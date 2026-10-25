@@ -1,0 +1,13 @@
+# Squad HQ workspace repo: tracks the tracker, operating model, and mentor tooling only.
+# Each project is its own git repo with its own remote.
+projects/
+# Mentor-only spoilers stay local and out of history.
+.mentor/
+# Never commit secrets or real Ping data.
+.env
+*.env
+data/ping/
+__pycache__/
+.venv/
+.pre-kit-backup-*/
+.DS_Store

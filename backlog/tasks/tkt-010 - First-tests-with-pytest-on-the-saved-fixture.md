@@ -1,0 +1,36 @@
+---
+id: TKT-010
+title: First tests with pytest on the saved fixture
+status: Backlog
+assignee:
+  - '@rahul'
+created_date: '2026-10-23T06:55:00Z'
+labels:
+  - stage-0
+  - testing
+  - cat:P0-10
+milestone: m-0
+dependencies:
+  - TKT-009
+priority: p1
+type: feature
+project: P0
+ordinal: 10000
+---
+
+## Description
+
+<!-- SECTION:DESCRIPTION:BEGIN -->
+**Spec owner:** mentor (L1). Mentor writes the full template when this moves to Ready.
+
+NEW: pytest (test functions, assert, reading a failure report).
+<!-- SECTION:DESCRIPTION:END -->
+
+## Definition of Done
+<!-- DOD:BEGIN -->
+- [ ] #1 PR merged after mentor APPROVED
+- [ ] #2 CI green (once the repo has CI)
+- [ ] #3 Released and verified in production (RDS_MODEL.md section 6)
+- [ ] #4 Explain-back and understanding check passed
+- [ ] #5 Concept Log and PROGRESS.md updated
+<!-- DOD:END -->
