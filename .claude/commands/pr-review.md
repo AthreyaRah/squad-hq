@@ -1,10 +1,10 @@
 ---
-description: Create a teammate PR review ticket (patch + PR description + hidden answer key).
+description: Create a teammate PR review ticket (patch + PR description + hidden answer key). One per sprint.
 ---
 Create a teammate review ticket (RDS_MODEL.md section 8c).
 
-1. Pick the active project repo and a persona (Arjun before Stage 2; Arjun or Mei after).
-2. Write a realistic change for that repo as a patch at reviews/<TKT-ID>/change.patch, plus reviews/<TKT-ID>/PR.md. Make sure `git apply --check` succeeds against current main.
-3. Plant 3–7 issues across severities, using only concepts I have at Functional or better in the Concept Log, plus good code that deserves approval. Write the answer key to .mentor/review-keys/<TKT-ID>.md.
-4. Create the ticket with the review template (type review) and brief it in two lines.
-5. When I submit reviews/<TKT-ID>/my-review.md, grade it: caught/planted, false alarms, severity accuracy, tone. Then show the answer key and teach the misses with the explain skill.
+1. Pick the active slice repo and a persona (Arjun; Mei from S3).
+2. Write a realistic change as reviews/<TKT-ID>/change.patch plus reviews/<TKT-ID>/PR.md. Check `git apply --check` against current main.
+3. Plant 3–7 issues across severities, using only concepts I know at L2+ (DEPTH_GRID.md known list), plus good code that deserves approval. Write the answer key to .mentor/review-keys/<TKT-ID>.md.
+4. Create the ticket (type review, project = the slice) and brief it in two lines.
+5. When I submit reviews/<TKT-ID>/my-review.md, grade it: caught/planted, false alarms, severity accuracy, tone. Show the answer key, teach the misses, and add each miss to REPS.md.

@@ -1,18 +1,19 @@
 ---
 name: explain
-description: Use whenever the user asks to explain, walk through, or help them understand anything (code, a flow, a bug, a concept, an architecture, a model output). Picks the clearest output format and writes in simplified technical English.
+description: Use whenever the user asks to explain, walk through, or help them understand anything (code, a flow, a bug, a concept, an architecture, a model output). Picks the clearest output format and writes in short plain sentences. Teaches only the gap after an attempt.
 ---
 
 # Explain
 
 Goal: the user understands fast. Pick the lightest format that works, then escalate only when it helps.
 
+**Never lecture before the user attempts.** On a ticket, the user tries first; then teach only the gap the attempt shows. A direct question ("what is X?") gets a direct answer.
+
 ## Format ladder
 
-1. **Text** — default. Write in ~80% ASD-STE100 (see rules below).
+1. **Text** — default. Short plain sentences (see Writing rules).
 2. **Diagram** — when the answer is a flow, structure, sequence, or relationship. Follow the Diagram style below. In the terminal use plain ASCII boxes and arrows; for a richer one, publish via the Artifact tool (`artifact-diagramming` skill).
 3. **HTML page** — a one-page reference sheet (see below) when the topic is large, has many parts, or benefits from interaction (tabs, step-through, annotated code). Publish with the Artifact tool (`artifact-design` skill).
-4. **Explainer video** — only if the user asks. Use the `faceless-explainer` skill.
 
 Short question → text. "How does X flow / fit together" → diagram. "Explain the whole X" → HTML page. Do not escalate to a bigger format unasked for a small question.
 
@@ -54,43 +55,18 @@ Terminal fallback:
  [Browser] --token--> [app-studio] --> [optics] --> [Device]
 ```
 
-## Writing rules (ASD-STE100, relaxed)
+## Writing rules
 
-Limits:
+- Short plain sentences, about 20 words or fewer. One idea per sentence.
+- Active voice, simple present tense.
+- Example first, then the rule.
+- Define a technical term once, the first time, in one simple sentence. Then use the same word every time.
+- Everyday words: use not utilize, start not commence, before not prior to, make sure not ensure.
+- Vertical lists for steps and for anything with more than 3 parts.
 
-| Item | Max |
-| ---- | --- |
-| Procedural sentence | 20 words |
-| Descriptive sentence | 25 words |
-| Paragraph | 6 sentences, one topic |
-| Noun cluster | 3 words |
-| Instructions per sentence | 1 (except simultaneous actions) |
-
-Verbs:
-
-| Form | Example | OK |
-| ---- | ------- | -- |
-| Command | Close the valve. | yes |
-| Simple present / past / future | The valve closes. | yes |
-| Infinitive | Turn the knob to close it. | yes |
-| Past participle as adjective | The closed valve | yes |
-| Progressive (-ing) | The valve is closing. | no |
-| Perfect | The valve has closed. | no |
-| Passive in procedures | The valve must be closed. | no |
-
-Words:
-
-- Same word for the same thing, every time. No synonyms for variety.
-- Keep "the", "a", "this". Do not drop articles.
-- Short common words: use not utilize, start not commence, before not prior to, about not approximately, fill not replenish, make sure not ensure, to not in order to.
-- Active voice. Simple present tense. Use vertical lists for complex text.
-
-Safety: put the command first, then the reason. `WARNING` = risk of injury. `CAUTION` = risk of damage.
-Example: "WARNING: Do not touch the brake unit until it is cool. Hot parts can cause injury."
-
-Rewrite check (same meaning, 12 words instead of 16):
+Rewrite check:
 - Before: "It is imperative that the operator ensures the hydraulic reservoir is replenished prior to commencing operation."
-- After: "Make sure the hydraulic reservoir is full before you start the operation."
+- After: "Make sure the hydraulic reservoir is full before you start."
 
 ## Structure
 
@@ -138,7 +114,6 @@ Question: "Explain Redux like I'm 13."
 | "Why does this hook re-render?" | Text | One cause, one fix |
 | "How does a request reach the device?" | Diagram: `Browser → app-studio → optics → device` | It is a path with steps |
 | "Explain the whole reports feature" | HTML reference sheet | Many parts: list, summary, drill-down |
-| "Make a video on how login works" | Explainer video | You asked for one |
 
 ### Answer shape
 
