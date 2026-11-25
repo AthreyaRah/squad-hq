@@ -2,7 +2,19 @@
 
 Every ticket body uses the template for its type. Acceptance criteria go in `--ac` (one per line item) so they become checkboxes. The Definition of Done comes from `backlog/config.yml` defaults, plus extra `--dod` items when a ticket needs them.
 
-Sections marked (L1) are always filled by the mentor at L1. From L2 onward, the "Spec owner" line says who fills what (RDS_MODEL.md section 4).
+The "Spec owner" line follows my depth-grid level in the ticket's layer (RDS_MODEL.md section 4). Every ticket has a **time box**. At the box, I ship what exists.
+
+## Definition of done (every artefact; slice versions must meet all of it)
+
+1. Public repo (no work data, no secrets).
+2. One-command reproducible run from a clean clone.
+3. Tests and green CI.
+4. README with one architecture diagram.
+5. Benchmark or eval numbers where relevant.
+6. Known limitations.
+7. A short write-up I can publish (`/publish`).
+ADRs and runbooks only when the project is big enough (a scheduled job or a server).
+Per ticket, the tracker DoD (`backlog/config.yml`) adds: mentor APPROVED, verified per RDS section 6, explain-back passed, findings added to REPS.md.
 
 Hints never go in the ticket. Give them only on `STUCK`, in steps (CLAUDE.md).
 
@@ -11,8 +23,8 @@ Hints never go in the ticket. Give them only on `STUCK`, in steps (CLAUDE.md).
 ## feature
 
 ```markdown
-**Spec owner:** mentor (L1) | mentor + me adds 2 edge cases (L2) | me, mentor reviews (L3+)
-**Project / epic:** P0 · Load layer
+**Spec owner:** mentor (layer at L1) | mentor + me adds 2 edge cases (L2) | me, mentor reviews (L3+)
+**Slice / version:** S1 v1 · silver layer  ·  **Time box:** <hours>  ·  **Work transfer:** <which pod pattern this mirrors>
 **Requested by:** [Persona: Fatima, Head of Ops Analytics] "<one quote with the business need>"
 
 ### Why this ticket exists
@@ -42,8 +54,8 @@ Hints never go in the ticket. Give them only on `STUCK`, in steps (CLAUDE.md).
 ### Out of scope
 <What NOT to build now, so scope stays small.>
 
-### Estimate
-<Mentor estimate in sessions. I add my ETA when I pick it up.>
+### Time box
+<Mentor time box in hours. I add my ETA when I pick it up. At the box I ship what exists.>
 
 ### Deliverables
 Branch `tkt-xxx-<slug>` · Commit `<type>(<scope>): <summary> (TKT-xxx)` · PR with template · tests listed below
@@ -52,7 +64,7 @@ Branch `tkt-xxx-<slug>` · Commit `<type>(<scope>): <summary> (TKT-xxx)` · PR w
 <The tests that prove it: happy path, error path, edge cases.>
 ```
 
-AC style: each AC is a command I can run plus the expected result. Example: "`uv run pytest tests/test_load.py -k rerun` passes: running the load twice for 2026-10-20 leaves exactly 24 rows."
+AC style: each AC is a command I can run plus the expected result. Example: "`uv run pytest tests/test_bronze.py -k rerun` passes: loading 2026-10-01 twice leaves the same row count as loading it once."
 
 ---
 
@@ -209,6 +221,8 @@ YESTERDAY:
 TODAY:
 BLOCKERS:
 ETA:
+JOB LOOP THIS WEEK: applications n/3 · post n/1
+REPS DUE:
 CONFIDENCE (1-5):
 ```
 
@@ -221,7 +235,7 @@ WHAT I UNDERESTIMATED:
 WHAT I WILL DO DIFFERENTLY WHEN I ESTIMATE NEXT TIME:
 ```
 
-## Promotion packet — `docs/promotions/<track>-L<n>.md`
+## Promotion packet — ARCHIVED (replaced by the depth grid, RDS_MODEL.md section 10). Kept for reference only.
 
 ```
 TRACK / TARGET LEVEL:
@@ -234,3 +248,55 @@ METRICS (cycle time, estimate error, escaped defects):
 WHAT I CAN NOW EXPLAIN WITH NO NOTES:
 GAPS I KNOW ABOUT:
 ```
+
+---
+
+## transfer (project S1–S6, label `transfer`) — after each slice v1
+
+```markdown
+**Pattern:** <what I built on the public twin, e.g. dynamic pivot + medallion>
+**Work target:** <pod and use case, described without data values>
+**Data rule:** real data never enters the workspace. I report counts, metrics and errors only.
+
+### Checklist (done at work, in my own time or inside a real pod task)
+- [ ] Map the twin's schema to the work schema (column names only, shared if approved)
+- [ ] Adapt the code; note what differs (types, volume, access)
+- [ ] Run on real data; record row counts in/out and DQ check results
+- [ ] One stakeholder outcome (who used it, what decision or time saved)
+
+### Report back (counts and outcomes only)
+ROWS IN / OUT: · CHECKS PASSED: · RUNTIME: · WHAT BROKE: · OUTCOME:
+```
+AC: the report is filled; PORTFOLIO.md transfer column updated. No values, names or rows.
+
+## job-search (project JOB, label `job-search`) — `/apply`, weekly
+
+```markdown
+**Week:** n  ·  **Time box:** 3 h
+- [ ] 3 applications (role, company, link, which slice I lead with, date)
+- [ ] 1 resume or LinkedIn tweak (what changed and why)
+- [ ] 1 timed set: <n> SQL + <n> Python from <platform>, <minutes> min, no AI
+```
+AC: METRICS.md job-loop rows updated; failed timed questions go to REPS.md.
+
+## publish (project PUB, label `publish`) — `/publish`, weekly
+
+```markdown
+**Source:** <slice version or ticket>  ·  **Channel:** LinkedIn / GitHub / blog
+- [ ] README pass (diagram, one-command run, numbers, limitations)
+- [ ] Write-up (300–600 words): problem → approach → numbers → what I would do next
+- [ ] Post draft in my voice (I edit and post it myself)
+```
+AC: link added to PORTFOLIO.md. Honesty check: personal project stated as such; no work data.
+
+## diagnostic (project DIAG, label `diagnostic`) — `/diag`
+
+```markdown
+**Area:** SQL / Python / Git+PR  ·  **Time box:** 60–90 min, no notes, no AI
+### Probes (each is a small task with a known answer)
+1. <task> — pass / partial / fail — note
+2. ...
+### Result
+KNOWN: <items passed cleanly> · SHAKY: <partial → REPS.md> · GAP: <fail → first S1 ticket or REPS.md>
+```
+AC: DEPTH_GRID.md known list and baseline level updated with this ticket as evidence.

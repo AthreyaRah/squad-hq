@@ -5,7 +5,7 @@ Chaos incidents and maintenance tickets target systems on this list.
 
 | System | Project | Runs how | Healthy means | Runbook | Since | Status |
 |---|---|---|---|---|---|---|
-| _(none yet — P0 joins at v0.1.0)_ | | | | | | |
+| _(none yet — the S1 pipeline joins at its v1 release, with a freshness check)_ | | | | | | |
 
 ## Incident history
 
