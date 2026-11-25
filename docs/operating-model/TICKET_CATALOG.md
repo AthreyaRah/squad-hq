@@ -89,7 +89,7 @@ v1:
 - S5-06 [feature] Simple UI (Streamlit or a small HTML/HTMX page; Databricks Apps pattern) — book a slot end to end
 - S5-07 [chore] Docker + CI/CD deploy to a free host, smoke test, rollback drill — deployed URL in README
 - S5-T [chore/transfer] Apply the pattern to the work time-entry/booking app — outcomes only
-v2/v3: caching hot reads · background jobs (email/notify) · rate limiting · OpenTelemetry traces · 🤖 agent-built admin page with review
+v2/v3: caching hot reads · background jobs (email/notify) · rate limiting · OpenTelemetry traces · 🤖 agent-built admin page with review · React + TypeScript UI (100xDevs React sections; only if a job needs it)
 
 ## S6 — Reliability, performance, cost
 

@@ -12,7 +12,7 @@ SPRINT: S03 2026-11-23 — planned 14 (~36 h) / done 0; S1-04..11, S1-T in Backl
 JOB LOOP (week): applications 0/3 (starts week 3) · post 0/1 · timed set n/a
 REPS: due 0 today (3 due 2026-11-27) · streak 0 days
 BUILD RATIO: n/a (setup session) · hours this week: ?
-LATER LIST: Homebrew, Node.js, gh details (when a ticket needs them); Docker install (S1-07)
+LATER LIST: Homebrew, Node.js, gh details (when a ticket needs them); Docker install (S1-07); S5 v2 React + TypeScript UI (only if a job needs it)
 ```
 
 ## BASELINE (old plan, kept for history — the diagnostic replaces it; see DEPTH_GRID.md)
