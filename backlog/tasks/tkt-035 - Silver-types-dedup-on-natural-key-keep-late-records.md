@@ -5,6 +5,7 @@ status: Backlog
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:02:00Z'
+updated_date: '2026-11-25T17:25:00Z'
 labels:
   - slice-1
   - v1
@@ -41,6 +42,7 @@ Duplicate rows, a late row, a bad type (planted).
 - [ ] #1 Bronze → silver row counts reconcile: silver = bronze − duplicates − rejected (numbers in the PR)
 - [ ] #2 Rejected rows go to a quarantine table with a reason
 - [ ] #3 Tests cover duplicate, late and bad-type rows
+- [ ] #4 A test proves NULL handling: COUNT(*) vs COUNT(col) and a NOT IN with a NULL key behave as I predicted in the PR
 <!-- AC:END -->
 
 ## Definition of Done
@@ -51,3 +53,16 @@ Duplicate rows, a late row, a bad type (planted).
 - [ ] #4 Explain-back and understanding check passed
 - [ ] #5 Findings added to REPS.md; PROGRESS.md updated
 <!-- DOD:END -->
+
+## Comments
+
+<!-- COMMENTS:BEGIN -->
+author: @mentor
+created: 2026-11-25T17:25:00Z
+
+---
+
+Interview-coverage pass (2026-11-25): added AC so this ticket covers an interview-critical concept.
+
+---
+<!-- COMMENTS:END -->

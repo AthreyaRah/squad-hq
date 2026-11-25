@@ -5,6 +5,7 @@ status: Backlog
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:02:00Z'
+updated_date: '2026-11-25T17:25:00Z'
 labels:
   - slice-1
   - v1
@@ -42,6 +43,7 @@ Local PySpark + Delta (delta-spark) vs Databricks Free Edition. **Decision:** lo
 - [ ] #2 CI is green on the PR
 - [ ] #3 README shows the medallion diagram and a one-line run command
 - [ ] #4 No secrets, no work data in the repo
+- [ ] #5 mypy runs in CI with no errors; public functions have type hints
 <!-- AC:END -->
 
 ## Definition of Done
@@ -52,3 +54,16 @@ Local PySpark + Delta (delta-spark) vs Databricks Free Edition. **Decision:** lo
 - [ ] #4 Explain-back and understanding check passed
 - [ ] #5 Findings added to REPS.md; PROGRESS.md updated
 <!-- DOD:END -->
+
+## Comments
+
+<!-- COMMENTS:BEGIN -->
+author: @mentor
+created: 2026-11-25T17:25:00Z
+
+---
+
+Interview-coverage pass (2026-11-25): added AC so this ticket covers an interview-critical concept.
+
+---
+<!-- COMMENTS:END -->

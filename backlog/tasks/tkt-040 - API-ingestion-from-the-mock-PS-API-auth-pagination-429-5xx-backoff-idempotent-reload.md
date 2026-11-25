@@ -7,6 +7,7 @@ status: Backlog
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:02:00Z'
+updated_date: '2026-11-25T17:25:00Z'
 labels:
   - slice-1
   - v1
@@ -36,6 +37,7 @@ Ingest one entity from the mock API into bronze. Backend concepts: bearer token,
 - [ ] #1 All pages loaded; row count equals the API total
 - [ ] #2 A forced 429 is retried and the run still succeeds; a 400 fails at once
 - [ ] #3 Rerun of the same window leaves the same rows
+- [ ] #4 Pages are read through a generator; retries use my own decorator (backoff + jitter, only 429/5xx/timeouts) with tests
 <!-- AC:END -->
 
 ## Definition of Done
@@ -46,3 +48,16 @@ Ingest one entity from the mock API into bronze. Backend concepts: bearer token,
 - [ ] #4 Explain-back and understanding check passed
 - [ ] #5 Findings added to REPS.md; PROGRESS.md updated
 <!-- DOD:END -->
+
+## Comments
+
+<!-- COMMENTS:BEGIN -->
+author: @mentor
+created: 2026-11-25T17:25:00Z
+
+---
+
+Interview-coverage pass (2026-11-25): added AC so this ticket covers an interview-critical concept.
+
+---
+<!-- COMMENTS:END -->

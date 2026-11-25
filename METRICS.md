@@ -22,9 +22,9 @@ _Generated 2026-11-25 by tools/metrics.py. Do not edit by hand._
 
 ## Weekly (manual + auto summary)
 
-| Week of | Tickets shipped | Build ratio | Hours | Rep streak (days) | REPS passed / retired | Findings C/H/M/L | Repeated mistakes | Applications | Replies / interviews | Posts | Timed-set score | Mock score | Depth-grid changes |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2026-11-23 | 0 (reconfigure week) | — | — | 0 | 0 / 0 | — | — | 0 | 0 / 0 | 0 | — | — | baseline pending (DIAG-05) |
+| Week of | Tickets shipped | Build ratio | Hours | Rep streak (days) | REPS passed / retired | Findings C/H/M/L | Repeated mistakes | Applications | Outreach sent / replied | Replies / interviews | Posts | Timed-set score | Mock score | Depth-grid changes |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-11-23 | 0 (reconfigure week) | — | — | 0 | 0 / 0 | — | — | 0 | 0 / 0 | 0 / 0 | 0 | — | — | baseline pending (DIAG-05) |
 
 ## Streak
 

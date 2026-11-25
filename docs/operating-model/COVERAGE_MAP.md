@@ -19,18 +19,18 @@ Priority tags (on every section heading):
 
 | § | Section | Tag | Slice | Required-now rows (for partial sections) |
 |---|---|---|---|---|
-| 1 | Python | REQ-NOW (partial) | S1, DIAG | objects/mutability, functions/scope, comprehensions, classes/dataclasses, exceptions, generators, context managers, decorators, type hints, modules/packaging (uv), files/JSON, logging/config, CLI, pytest/fixtures/parametrize/mocks. Concurrency, asyncio, profiling, metaprogramming → LATER (S6) |
+| 1 | Python | REQ-NOW (partial) | S1, DIAG | objects/mutability, functions/scope, comprehensions, classes/dataclasses, exceptions, generators, context managers, decorators, type hints, modules/packaging (uv), files/JSON, logging/config, CLI, pytest/fixtures/parametrize/mocks. Concurrency basics (CPU vs I/O bound, GIL, threads vs processes vs asyncio) → REQ-NOW at [W] for interviews (S1 v2 async fetch). Profiling, metaprogramming → LATER (S6) |
 | 2 | Software craft | REQ-NOW (partial) | all | Git branch/PR/squash, code review, clean code, ADRs, estimation, semver. Rebase/bisect/reflog, SOLID patterns, legacy refactoring → LATER |
 | 3 | SQL | REQ-NOW | S1, S2, DIAG | all rows ([S] are interview-critical) |
 | 4 | Database internals | JIT | S1, S5 | indexes, transactions, isolation, locking when S5-05 needs them |
 | 5 | Linux, OS, shell | JIT | S1, S6 | shell basics in S1; diagnosis tools in S6 |
 | 6 | Networking | JIT | S1, S5 | HTTP, DNS→TCP→TLS trace when S1-08/S5 need it |
-| 7 | DSA | LATER | JOB | interview-driven only: assigned in /apply timed sets when postings demand it |
+| 7 | DSA | REQ-NOW (partial) | JOB | [W] on hashing, two pointers, sliding window, sorting, stacks (JOB-DSA, 1 problem/week). Trees, graphs, DP → LATER unless postings demand them |
 | 8 | Data modeling | REQ-NOW (spike) | S1, S2 | all rows except Data Vault (A) |
 | 9 | Data engineering | REQ-NOW | S1 | all rows |
 | 10 | Orchestration and transformation | REQ-NOW (partial) | S1 | dbt core rows, one orchestrator (Airflow or Databricks Workflows). ADF, Dagster/Prefect → LATER |
 | 11 | Spark and lakehouse | REQ-NOW | S1, S6 | all rows; MLlib → LATER |
-| 12 | Streaming | LATER | S6 | CDC and Kafka basics at [A] in S6-01 |
+| 12 | Streaming | REQ-NOW (partial) | JOB-SD, S6 | Kafka basics + CDC + delivery semantics at [A] for interviews (JOB-SD); hands-on in S6-01 |
 | 13 | Warehouses and cloud | REQ-NOW (partial) | S1, DIAG-04 | the primary cloud chosen by DIAG-04 + AWS core (§34). Snowflake, Synapse, Fabric → LATER unless postings demand them |
 | 14 | Data quality | REQ-NOW | S1, S2 | all rows |
 | 15 | Cloud, IaC, CI/CD | REQ-NOW (partial) | S1, S5 | GitHub Actions, deployment + rollback, cost awareness. Terraform, Azure DevOps → LATER |
@@ -179,7 +179,7 @@ Priority tags (on every section heading):
 - [W] CORS, cookies, sessions — BE-1·B, FS-1
 - [A] CDNs and edge caching — BE-1·E
 
-## 7. Data structures and algorithms (roadmap p11) — `LATER`
+## 7. Data structures and algorithms (roadmap p11) — `REQ-NOW (partial)`
 Interview-driven practice from week 3 (/apply timed sets; NeetCode patterns only if postings demand DSA). Each pattern ALSO appears once in a real ticket:
 - [S] Complexity (Big-O, amortized) — every perf ticket
 - [S] Arrays, strings, hash maps/sets — DE-1 (dedupe)
@@ -253,7 +253,7 @@ Interview-driven practice from week 3 (/apply timed sets; NeetCode patterns only
 - [A] Delta Sharing; Photon — DE-3·C
 - [W] Spark MLlib pipeline — ML-6
 
-## 12. Streaming — `LATER`
+## 12. Streaming — `REQ-NOW (partial)`
 - [S] Kafka: topics, partitions, keys and ordering, offsets, consumer groups, rebalancing, retention, replay — DE-4
 - [S] Delivery semantics: at-most-once, at-least-once, exactly-once (idempotent producer, transactions, idempotent sinks) — DE-4
 - [W] Log compaction — DE-4
@@ -938,3 +938,47 @@ Generated from roadmap.html focus and checklist items. Every item has a home and
 ## 41. Learning habits (AI-use, retrieval, spacing) — `REQ-NOW`
 - [S] Attempt first; AI as reviewer; explain every line — every ticket
 - [S] Blank-file rebuild 2 days after shipping — REPS.md
+
+## 42. Required-now trace (pass-2 check: every REQ-NOW area → a new ticket)
+
+Depth bar for a strong mid-level DE/AE role (pay band: private/compensation.md): SQL [S] · data modeling [S] · Spark/Delta [S] on architecture, joins, skew, partitioning, MERGE; [W] on Catalyst internals · Python [S] core + testing, [W] concurrency · dbt + Airflow [S] · data quality [S] · cloud core [W] · DE system design [S] · behavioral [S].
+
+| Area (§) | Tickets that cover it | Interview check |
+|---|---|---|
+| SQL joins, fan-out, NULLs, grain, windows, dedup, plans (§3) | DIAG-01, S1-03, S1-05 | timed sets |
+| SQL MERGE/upsert, incremental (§3, §9) | S1-10, S2-02b | JOB-SD |
+| SQL GROUPING SETS, cohorts, EXISTS vs IN (§3) | S2-02c | timed sets |
+| SQL gaps-and-islands, recursive CTE, date spine (§3) | S3-01 | timed sets |
+| SQL DDL, constraints, indexes, transactions (§3, §4) | S1 v2 (MySQL sink), S5-03, S5-05 | timed sets |
+| Python core, classes, exceptions, files, pytest (§1) | DIAG-02, S1-01, S1-03 | JOB-DSA |
+| Python decorators, generators, type hints, logging/config (§1) | S1-08, S1-01, S1-07 | JOB-MOCK |
+| Python concurrency basics [W] (§1) | S1 v2 async fetch | JOB-SD |
+| pandas (§9) | JOB-DSA, S1 v2 comparison | timed sets |
+| Spark architecture, lazy eval, partitions, explain (§11) | S1-02, S1-11 | JOB-MOCK |
+| Spark joins, skew, repartition/coalesce, Spark UI (§11) | S1-11, S6-02 | JOB-SD |
+| Delta MERGE, time travel, OPTIMIZE/VACUUM, small files (§11) | S1-10 | JOB-MOCK |
+| Databricks (Auto Loader, UC, Workflows) (§11) | S1 v2 (Free Edition) | DIAG-04 decides timing |
+| Dynamic pivot / frameworks (§9, §37) | S1-04 | portfolio |
+| Dimensional modeling, grain, conformed dims (§8) | S1-05, S2-02 | JOB-SD |
+| SCD Types 1/2/3 (§8) | S2-02b | JOB-MOCK |
+| dbt models, tests, snapshots (§10) | S1-05, S2-02b, S2-03 | JOB-MOCK |
+| Airflow retries, backfill, idempotency (§10) | S1-07 | JOB-SD |
+| Data quality, contracts (§14) | S1-06, S2-04 | JOB-MOCK |
+| API ingestion, retries, idempotency (§17) | S1-08 | JOB-SD |
+| AWS core S3/IAM/RDS (§34) | S1-09, S1 v2 | DIAG-04 decides cloud |
+| Semantic layer, governance, glossary (§35–37) | S2-01, S2-03, S2-04, S2-05, S2-07 | portfolio |
+| Kafka/CDC basics [A] (§12) | JOB-SD, S6-01 | JOB-SD |
+| DE system design (§18) | JOB-SD weekly | JOB-MOCK |
+| DSA core patterns [W] (§7) | JOB-DSA | timed sets |
+| Behavioral / STAR (§32, §40) | JOB-STAR | JOB-MOCK |
+| Job search, salary, negotiation, logistics (§40) | DIAG-04, JOB-TARGETS, JOB-OUT, JOB-LOG, JOB-NEG, JOB-RES | METRICS.md |
+| Git, PR flow, code review, ADRs (§2) | DIAG-03, every PR, /pr-review each sprint | JOB-MOCK |
+| Primary cloud and warehouse choice (§13) | DIAG-04, S1-09, S1 v2 | DIAG-04 |
+| CI/CD, deploy, rollback (§15) | S1-01 (CI), S1-07, S5-07 | JOB-SD |
+| Security: secrets, authN/authZ, PII (§16) | S1-09 (IAM), S2-07 (PII), S5-04 (OAuth/JWT), S4-06 | JOB-SD |
+| Statistics for AE interviews: A/B design, CIs, t-test, power (§20) | S2-09 | JOB-MOCK |
+| CX data science: churn, cohorts, GRR/NRR (§22) | S2-02c (cohorts), S3-01..08 | portfolio |
+| Docker and Compose (§27) | S1-07 (Airflow in Compose), S5-07 | JOB-SD |
+| ML in production (§24) | S3-01..08 | after first interviews |
+| AI on data, evals, MCP (§25, §37) | S4-01..07 | after first interviews |
+| Backend service (§17) | S5-01..07 | after first interviews |

@@ -203,7 +203,7 @@ Output: the known list and the baseline levels in `DEPTH_GRID.md`. Gaps become R
 
 ## 17. Content stack (reference library, not a syllabus)
 
-One primary source per layer. Assign one exact section only when a ticket stalls after two rounds of teaching, at 2x speed.
+One primary source per layer. Assign one exact section only when a ticket stalls after two rounds of teaching, at 2x speed. I may also self-serve one section per ticket after my first attempt (≤30 min at 2x, logged; CLAUDE.md JIT rule).
 
 | Layer | Primary | Selective references |
 |---|---|---|

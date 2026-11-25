@@ -5,13 +5,13 @@ status: Backlog
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:02:00Z'
+updated_date: '2026-11-25T17:25:00Z'
 labels:
   - slice-1
   - v1
   - spark
   - data-modeling
   - cat:S1-04
-milestone: m-2
 dependencies:
   - TKT-035
 priority: p1
@@ -51,3 +51,16 @@ Collect distinct attributes then `pivot(attr, values)` vs `pivot(attr)` without 
 - [ ] #4 Explain-back and understanding check passed
 - [ ] #5 Findings added to REPS.md; PROGRESS.md updated
 <!-- DOD:END -->
+
+## Comments
+
+<!-- COMMENTS:BEGIN -->
+author: @mentor
+created: 2026-11-25T17:25:00Z
+
+---
+
+Moved out of S03 to keep the sprint at ~36 h after adding JOB-TARGETS, JOB-STAR and JOB-LOG (notice period matters early). First S04 ticket.
+
+---
+<!-- COMMENTS:END -->

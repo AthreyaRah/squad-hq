@@ -5,6 +5,7 @@ status: Backlog
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:02:00Z'
+updated_date: '2026-11-25T17:25:00Z'
 labels:
   - slice-1
   - v1
@@ -33,6 +34,8 @@ Run generator drop → bronze → silver → gold → checks daily (Airflow in D
 - [ ] #1 One scheduled run succeeds end to end with a log line per step
 - [ ] #2 A failed check stops downstream steps
 - [ ] #3 FLEET.md entry with freshness and row-count range
+- [ ] #4 Airflow (Docker Compose) runs the DAG with retries; a 7-day backfill/catchup run succeeds and is idempotent
+- [ ] #5 Config comes from env vars; each task writes one structured log line
 <!-- AC:END -->
 
 ## Definition of Done
@@ -43,3 +46,16 @@ Run generator drop → bronze → silver → gold → checks daily (Airflow in D
 - [ ] #4 Explain-back and understanding check passed
 - [ ] #5 Findings added to REPS.md; PROGRESS.md updated
 <!-- DOD:END -->
+
+## Comments
+
+<!-- COMMENTS:BEGIN -->
+author: @mentor
+created: 2026-11-25T17:25:00Z
+
+---
+
+Interview-coverage pass (2026-11-25): added AC so this ticket covers an interview-critical concept.
+
+---
+<!-- COMMENTS:END -->

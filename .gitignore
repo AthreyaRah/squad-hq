@@ -11,3 +11,5 @@ __pycache__/
 .venv/
 .pre-kit-backup-*/
 .DS_Store
+# Personal compensation and other private notes stay local.
+private/

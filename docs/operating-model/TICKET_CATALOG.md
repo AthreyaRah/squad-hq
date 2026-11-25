@@ -20,28 +20,33 @@ Old catalog (Stage 0–6, 408 lines): `archive/old-plan/TICKET_CATALOG.v1.md`. T
 
 Data: a synthetic PS generator (projects, resources, time entries, invoices). New custom fields appear over time (drift), plus late records and duplicates ⚡.
 v1 (Level 1 design; about 2–3 weeks):
-- S1-01 [chore] Repo skeleton: uv, ruff, pytest, Makefile `make run`, README stub with a diagram, CI (lint + tests) — clean clone runs CI green
-- S1-02 [feature] Bronze: land the generator's daily JSON/CSV drops as Delta (local PySpark or Databricks Free Edition) with ingest metadata — rerun of a day is idempotent
-- S1-03 [feature] Silver: types, dedup on natural key, late records kept ⚡ — row counts reconcile bronze → silver
+- S1-01 [chore] Repo skeleton: uv, ruff, mypy, pytest, Makefile `make run`, README stub with a diagram, CI (lint + types + tests) — clean clone runs CI green; type hints from day 1
+- S1-02 [feature] Bronze: land the generator's daily JSON/CSV drops as Delta (local PySpark) with ingest metadata, partitioned by date — rerun of a day is idempotent; I read `explain()` and say where the shuffle is; Parquet vs CSV vs JSON trade-off in the README
+- S1-03 [feature] Silver: types, dedup on natural key (window), late records kept, quarantine ⚡ — row counts reconcile bronze → silver; NULL logic tested
 - S1-04 [feature] `dynamic_pivot(df, key, attr_col, value_col)` handles fields that appear over time, with tests — a new field shows up as a column with no code change
 - S1-05 [feature] Gold: utilization and billable-hours facts with a stated grain, in dbt (dbt-duckdb or dbt-databricks) — dbt tests pass; grain written in the model doc
 - S1-06 [feature] Data-quality checks: not null, unique, accepted values, freshness, volume range — a planted bad day fails loudly ⚡
-- S1-07 [feature] Orchestrate the daily run (Airflow in Docker or Databricks Workflows) — one scheduled run succeeds; FLEET.md entry
-- S1-08 [feature] API ingestion of one source from a local mock API (auth token, pagination, 429/5xx with backoff, idempotent reload) ⚡ — backend: HTTP + retries
+- S1-07 [feature] Orchestrate the daily run with Airflow in Docker Compose: retries, catchup/backfill of 7 days, idempotent tasks, structured logging and config from env — one scheduled run + one backfill succeed; FLEET.md entry
+- S1-08 [feature] API ingestion of one source from a local mock API (auth token, pagination via a generator, 429/5xx retry via a decorator with backoff + jitter, idempotent reload) ⚡ — backend: HTTP + retries
 - S1-09 [chore] AWS basics: S3 bucket + IAM least-privilege user, land bronze files to S3 (free tier) — role policy reviewed, no root keys
+- S1-10 [feature] Incremental silver with Delta MERGE on a watermark; backfill a date range; time travel to undo a bad load; OPTIMIZE/VACUUM and the small-files problem — a rerun and a backfill give identical results (test)
+- S1-11 [perf] Spark performance basics at 10x volume: read the physical plan, broadcast vs sort-merge join, repartition vs coalesce, one skewed key and its fix, Spark UI screenshots — before/after numbers in the README
 - S1-T [chore/transfer] Apply dynamic pivot + medallion to the PS pod — counts and outcomes only
-v2/v3 (deepen; pick by need): incremental loads with watermarks · backfill a date range safely · schema drift contract (fail vs evolve) · MySQL on RDS as a sink (the team pattern) · Spark partitioning and file sizing · data contracts · DuckDB vs Spark ADR · 🤖 agent-built connector for a second source · rebuild metrics.py as a real pipeline over my tracker (old DOG-1)
+v2/v3 (deepen; pick by need): **run S1 on Databricks Free Edition (Auto Loader, Unity Catalog, Workflows) — before interviews if DIAG-04 shows Databricks demand** · async paginated fetch with asyncio + semaphore (Python concurrency [W]) · pandas vs PySpark vs DuckDB on the same transform (when to use which) · schema drift contract (fail vs evolve) · MySQL on RDS as a sink (the team pattern) · Spark partitioning and file sizing · data contracts · DuckDB vs Spark ADR · 🤖 agent-built connector for a second source · rebuild metrics.py as a real pipeline over my tracker (old DOG-1)
 
 ## S2 — Semantic layer, BI, governance (on S1 gold)
 
 v1 (Level 2 design):
 - S2-01 [design] Ontology and glossary: ARR, utilization, billable vs non-billable, Sales vs Finance revenue (Omar ⚡ double count) — `docs/glossary.md` with owners
 - S2-02 [feature] Clean the gold model: conformed dims, one fact per grain, names a stranger understands — "which table is real" answered by the model, not a note
+- S2-02b [feature] SCD Type 2 on resource role and bill rate: by hand in SQL MERGE, then as a dbt snapshot; Type 1 vs 2 vs 3 trade-offs in the README — point-in-time utilization by rate is correct (test)
+- S2-02c [feature] Finance views for Omar: GROUPING SETS/ROLLUP subtotals, cohort retention of projects, EXISTS vs IN vs JOIN with plans — totals reconcile to the cent
 - S2-03 [feature] Metric layer: metric views (Databricks) or dbt semantic models / MetricFlow — 5 metrics defined once, queried twice the same way
 - S2-04 [feature] Supervision tiers: tag every asset Core / Curated / Wild West with a quality bar and a promotion check — `docs/tiers.md`; Core metric tests in CI
 - S2-05 [feature] Agent context file: joinable fields, metric definitions, gotchas, generated from the model where possible — an agent answers 5 sample questions correctly
 - S2-06 [feature] BI view on the metric layer (Tableau Public or Power BI Desktop concepts: semantic model, measures/DAX basics) — Fatima's dashboard reconciles to a Core metric
 - S2-07 [chore] Lineage + access control: dbt docs lineage, column descriptions, role-based grants (Unity Catalog concepts or Postgres roles) — a restricted role cannot see PII columns
+- S2-09 [spike] Statistics for AE interviews: design and read an A/B test on a synthetic experiment (power, CI, t-test, peeking pitfall) in NumPy then SciPy — a 1-page readout Fatima can act on
 - S2-T [chore/transfer] Metric views for PS self-service — counts and outcomes only
 v2/v3: row-level security · data contracts with owners · metric change process (versioned definitions) · self-service adoption metrics · Power BI semantic model deeper if postings ask
 
@@ -49,7 +54,7 @@ v2/v3: row-level security · data contracts with owners · metric change process
 
 Data: a public subscription/churn dataset + synthetic contracts (start, end, amount, upgrades, downgrades).
 v1:
-- S3-01 [feature] Contracts model + GRR/NRR by month, reconciled by hand on 3 accounts — Omar signs off
+- S3-01 [feature] Contracts model + GRR/NRR by month (gaps-and-islands for contract continuity, date spine via recursive CTE), reconciled by hand on 3 accounts — Omar signs off
 - S3-02 [spike] Churn framing: label, prediction date, horizon, leakage list (Leila ⚡) — a 1-page framing doc
 - S3-03 [feature] Point-in-time features + time-based split — no feature uses data after the cutoff (test proves it)
 - S3-04 [feature] Baseline (logistic regression) vs boosting (XGBoost/LightGBM), class imbalance, calibration — metrics table with PR-AUC
@@ -105,7 +110,13 @@ v2/v3: Structured Streaming with watermarks · Kubernetes awareness (deploy S5 o
 - JOB-RES [docs] Resume + LinkedIn v1 from real slices (honest: personal projects) — week 2–3
 - JOB-MOCK [drill] Monthly mock with Khalid: SQL, Python, one design, one STAR story — score in METRICS.md
 - PUB-x [docs] Weekly public post / repo update from the slice write-up — link in PORTFOLIO.md
-- JOB-SD [drill] DE/AE system design drills before interviews: batch ingestion, CDC pipeline, lakehouse, metric layer, AI-on-data — from my own slices
+- JOB-SD [drill] DE/AE system design drills, **one per week from week 3**: batch ingestion, CDC pipeline (incl. Kafka basics at [A]: topics, partitions, offsets, consumer groups, at-least-once), lakehouse, metric layer, AI-on-data — from my own slices
+- JOB-TARGETS [docs] Target list: 30 UAE companies in 3 tiers by pay (from DIAG-04 salary data + recruiter reports), with the slice to lead with for each — week 2
+- JOB-STAR [docs] 8 STAR stories, honest: 4 from my real BI/analyst work (stakeholders, a metric fix, automation, a dashboard decision) + 4 from slices/incidents — week 2–3
+- JOB-OUT [chore] Outreach: 3 messages a week to UAE data people/recruiters (ask for a referral or a 15-min chat), tracked in METRICS.md — from week 3
+- JOB-LOG [docs] Move logistics: notice period, relocation budget, visit-visa vs remote-interview plan, documents (degree attestation), LinkedIn location and "open to work" settings — week 2
+- JOB-NEG [drill] Salary negotiation: my floor, target and stretch (monthly total package: basic + housing + transport), how to answer "current salary", one mock negotiation — before the first offer
+- JOB-DSA [drill] Light coding-round prep inside /apply timed sets: 1 LeetCode easy/medium a week (hashing, two pointers, sliding window, sorting, stacks) + 1 pandas problem — from week 3
 
 ---
 

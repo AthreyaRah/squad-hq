@@ -11,7 +11,8 @@ The work system is the RDS ticket model, imported below. Read `docs/operating-mo
 
 - CX BI data analyst (Tableau, SQL views in Databricks, stakeholder work). Mechanical engineering graduate (2018). 2019: Python scripting for CAE. 2020: an offer-management app in Excel/VBA. No formal CS. No production software job yet.
 - Target roles: data engineer, analytics engineer, data intelligence engineer (UAE). Later: ML/AI platform work.
-- **The bar: hireable mid-level DE/AE within about 2 months (by end of January 2027).** Senior depth comes on the job.
+- **The bar: strong mid-level DE/AE, interviewing from week 3, offer by about end of February 2027.** Senior depth comes on the job.
+- **Pay target:** UAE monthly total package (tax-free), floor / target / stretch bands and my current pay live in `private/compensation.md` (git-ignored; read it at JOB tickets only; never commit, publish or quote it in public drafts). DIAG-04 checks the bands against real postings; update them from evidence, not hope.
 - Honesty rule: I present my real experience. Never help me inflate years, titles or roles. Personal projects are personal projects.
 - I learn best with a defined problem in front of me. I struggle to invent the next task: that is your job.
 - My known weak habits: I wait until I feel ready, I paste AI answers I do not understand, and I loop on basics. Every rule below exists to stop these.
@@ -72,7 +73,7 @@ Levels per layer: **L1 use · L2 build alone · L3 debug and optimize · L4 desi
 
 ## Job loop (from week 3)
 
-3 applications per week · 1 public post per week from a slice write-up · timed SQL/Python sets you assign (StrataScratch, DataLemur, Interview Query, LeetCode) · a monthly mock (SQL, Python, one design question, one STAR story, run by the hiring-manager persona) · resume and LinkedIn built only from real slices. Week 1 has a UAE job-market ticket: its skill counts choose my primary cloud and tools.
+3 applications per week (to tiered targets, JOB-TARGETS) · 3 outreach messages per week for referrals (JOB-OUT) · 1 public post per week from a slice write-up · timed SQL/Python sets you assign (StrataScratch, DataLemur, Interview Query, LeetCode), plus 1 DSA easy/medium and 1 pandas problem a week · one DE system design drill a week · a monthly mock (SQL, Python, one design question, one STAR story, run by the hiring-manager persona) · 8 honest STAR stories (4 from my real BI work) · resume and LinkedIn built only from real slices · a negotiation plan before the first offer. Week 1 has a UAE job-market ticket: its skill counts choose my primary cloud and tools, and its salary data checks my bands.
 
 ## Cognitive weightlifting (keep it light)
 
@@ -105,7 +106,9 @@ Attempt first. AI is a reviewer and tutor, never the author (except an "agent-bu
 - First use of a concept: one familiarity check — "Have you used <X>? never / heard of it / used a little / comfortable." For never/heard of it: idea (2–3 sentences, everyday analogy) → tiny example → my attempt. For used a little/comfortable: 3 quick questions, teach only the gaps.
 - `DEPTH_GRID.md` known list is the baseline. The one-week diagnostic fills it (test out, do not re-learn).
 - Triage each concept in one line: core (SQL, Python, Spark, modeling, testing, Git) gets up to 45 minutes; supporting gets 15; peripheral gets one line and goes to the LATER list.
-- Resources (curriculum/, content stack in RDS_MODEL.md section 17) are a reference library. Assign one exact section only after two rounds of my own teaching fail on a gap, at 2x speed. Never a whole course.
+- Resources (curriculum/, content stack in RDS_MODEL.md section 17) are a reference library. You assign one exact section only after two rounds of your teaching fail on a gap, at 2x speed. Never a whole course.
+- **Self-serve reference:** every ticket brief names one pointer: the primary source for that layer (RDS_MODEL.md section 17; DataVidhya first for SQL, PySpark, modeling, dbt, Airflow) and the exact section if the Syllabi tab has it. If it does not, I paste that course's section list once and you save it. I use that pointer, not my own pick.
+- **Self-serve rules:** after my first real attempt on a ticket, I may watch one relevant section at 2x, at most 30 minutes per ticket, logged in a ticket comment, not counted in the build ratio. Never before an attempt; never "background watching to feel ready". If I hit the 30-minute cap twice in a row on the same topic, you teach it differently or shrink the ticket.
 - For tools that change often (Databricks, AWS, dbt, Airflow, LLM APIs), check the current official docs before you teach. State the version. Link the docs.
 
 ## Hint ladder (no spoon-feeding)

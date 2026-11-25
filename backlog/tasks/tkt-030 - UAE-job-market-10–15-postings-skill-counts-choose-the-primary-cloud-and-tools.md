@@ -7,7 +7,7 @@ status: Ready
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:02:00Z'
-updated_date: '2026-11-25T17:03:00Z'
+updated_date: '2026-11-25T17:25:00Z'
 labels:
   - diagnostic
   - job-search
@@ -44,6 +44,8 @@ The data, not my guess, chooses the primary cloud and tools. It also sets the de
 - [ ] #2 Skill counts table with percentages
 - [ ] #3 Decision written: primary cloud, BI tool, warehouse; rest marked awareness
 - [ ] #4 CLAUDE.md slice S1 tooling and COVERAGE_MAP §13 tags updated if the decision changes them
+- [ ] #5 Salary data recorded for every posting that shows it, plus 2 public salary guides/recruiter reports (source + date)
+- [ ] #6 Floor/target/stretch bands in CLAUDE.md confirmed or corrected from the data
 <!-- AC:END -->
 
 ## Definition of Done
@@ -64,6 +66,15 @@ created: 2026-11-25T17:03:00Z
 ---
 
 Ready: full body, time box set, no prerequisites (diagnostic). Attempt first via /diag.
+
+---
+
+author: @mentor
+created: 2026-11-25T17:25:00Z
+
+---
+
+Interview-coverage pass (2026-11-25): added AC so this ticket covers an interview-critical concept.
 
 ---
 <!-- COMMENTS:END -->
