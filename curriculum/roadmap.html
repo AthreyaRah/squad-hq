@@ -124,6 +124,10 @@
   .phase-item.active{background:var(--surface-2);border-left:2px solid var(--done);}
   .phase-item .idx{font-family:'IBM Plex Mono';font-size:10px;color:var(--muted-2);width:30px;flex-shrink:0;}
   .phase-item .name{font-size:12.5px;flex:1;line-height:1.35;}
+  .prio-pill{font-family:'IBM Plex Mono';font-size:9px;padding:1px 5px;border-radius:3px;border:1px solid var(--line);color:var(--muted);flex-shrink:0;}
+  .prio-pill.prio-required{color:var(--de);border-color:var(--de);}
+  .prio-pill.prio-deep{color:var(--muted-2);}
+  .slice-line{font-family:'IBM Plex Mono';font-size:12px;color:var(--muted);margin:4px 0 12px;}
   .phase-item .pct{font-family:'IBM Plex Mono';font-size:10px;color:var(--muted);flex-shrink:0;}
   .track-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
 
@@ -274,10 +278,10 @@
 /* ======================= DATA ======================= */
 
 const TRACKS = {
-  DE:   {label:"Data Engineering", color:"var(--de)",   dim:"var(--de-dim)"},
+  DE:   {label:"DE / AE", color:"var(--de)",   dim:"var(--de-dim)"},
   SYS:  {label:"Systems",          color:"var(--sys)",  dim:"var(--sys-dim)"},
-  AI:   {label:"AI / Inference",   color:"var(--ai)",   dim:"var(--ai-dim)"},
-  META: {label:"Portfolio & Prep", color:"var(--meta)", dim:"var(--meta-dim)"},
+  AI:   {label:"AI on data / ML",   color:"var(--ai)",   dim:"var(--ai-dim)"},
+  META: {label:"Career", color:"var(--meta)", dim:"var(--meta-dim)"},
 };
 
 const PHASES = [
@@ -739,7 +743,110 @@ const PHASES = [
  focus:["Layer: API → service → vLLM model → load gen → metrics","Optimize: batch size, concurrency, context length, quantization, prefix caching, CUDA graphs","Compare: naive PyTorch → optimized PyTorch → vLLM → quantized vLLM → TensorRT"],
  resources:[],
  checklist:["Stand up all 5 layers (API, service, model, load gen, metrics)","Run the optimization sweep and record TTFT/p50/p95/p99/tokens-per-sec/GPU util","Publish a repo: architecture, methodology, baseline, experiments, graphs, profiler screenshots, bottleneck analysis, results, cost analysis, lessons learned"]},
+/* ===== Added 2026-11-25: slice phases (gaps found in the reconfigure audit) ===== */
+{id:"p40",track:"DE",time:"~1 week inside S1",title:"AWS Core (S3, IAM, RDS/MySQL)",
+ goal:"My team's CX data lives in MySQL on AWS. Learn only the AWS core a data engineer touches: storage, identity, managed MySQL.",
+ focus:["S3 buckets, prefixes, lifecycle","IAM users vs roles vs policies, least privilege","RDS for MySQL: connect, load, backups","VPC + security groups (just enough to connect)","cost basics (free tier, stop what you start)"],
+ resources:[
+   {n:"★ PRIMARY — AWS docs: What is Amazon S3?", u:"https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"},
+   {n:"AWS docs: What is IAM?", u:"https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html"},
+   {n:"AWS docs: Amazon RDS for MySQL", u:"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_MySQL.html"},
+ ],
+ checklist:["Land files in S3 with a least-privilege IAM role (no root keys)","Load into MySQL (RDS or local) idempotently","Explain IAM user vs role vs policy"],
+ ignore:"AWS certification prep, every service in the console, Glue/EMR deep dives unless postings demand them."},
+
+{id:"p41",track:"DE",time:"S2 (2–3 weeks) + spike",title:"Semantic Layer, BI & Governance",
+ goal:"Define each business metric once, serve it to BI and agents, and govern who sees what. Spike layer: the core of the data intelligence engineer role.",
+ focus:["metric views / dbt semantic layer","ontology + business glossary (ARR, GRR/NRR, utilization)","supervision tiers: Core / Curated / Wild West","lineage + documentation","role-based access, PII masking, row-level security","Power BI semantic model + DAX concepts; Tableau on governed sources"],
+ resources:[
+   {n:"★ PRIMARY — Databricks docs: Metric views", u:"https://docs.databricks.com/aws/en/metric-views/"},
+   {n:"dbt docs: Semantic Layer", u:"https://docs.getdbt.com/docs/use-dbt-semantic-layer/dbt-sl"},
+   {n:"Power BI docs: modeling view", u:"https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-modeling-view"},
+   {n:"MotherDuck: The Data Intelligence Engineer", u:"https://motherduck.com/blog/the-data-intelligence-engineer/"},
+ ],
+ checklist:["Define 5 metrics once and query them the same way twice","Write a glossary that settles Sales vs Finance revenue","Tag assets Core / Curated / Wild West with a promotion check","Restrict PII columns with roles","Reconcile a dashboard number to a Core metric"],
+ ignore:"BI tool certifications, pixel-perfect dashboards, every DAX function."},
+
+{id:"p42",track:"AI",time:"S3 (2–3 weeks)",title:"Production ML: MLflow, Leakage, Batch Scoring, Monitoring",
+ goal:"Ship a churn model the honest way: point-in-time features, time-based splits, tracked experiments, scheduled scoring, drift checks.",
+ focus:["churn framing (label, cutoff, horizon)","leakage + point-in-time features","time-based splits, class imbalance, calibration","MLflow tracking + registry","batch scoring to the warehouse","drift monitoring (PSI)"],
+ resources:[
+   {n:"★ PRIMARY — Applied AI Course (exact chapter only, when a ticket stalls)", u:"internal:p14"},
+   {n:"MLflow docs", u:"https://mlflow.org/docs/latest/"},
+   {n:"Made With ML", u:"https://madewithml.com/"},
+ ],
+ checklist:["Prove no feature leaks past the cutoff (a test)","Track and register models in MLflow","Schedule batch scoring and a drift report","Write a stakeholder report a Renewals lead can act on"],
+ ignore:"Kaggle-style leaderboard tuning, deep learning for tabular churn."},
+
+{id:"p43",track:"AI",time:"S4 (2–3 weeks) + spike",title:"AI on Data: Text-to-SQL, RAG, MCP, Agents, Evals",
+ goal:"Build Genie-style data agents that answer business questions correctly, and prove it with evals. Spike layer.",
+ focus:["multi-turn text-to-SQL over curated context","evals as system tests (known-answer questions, CI gate, drift)","RAG with a vector store + citations","MCP servers with least-privilege tools","guardrails + prompt injection","token cost + latency","where agents go wrong on SQL"],
+ resources:[
+   {n:"★ PRIMARY — CampusX LLM evals playlist + 100xDevs AI track (sections only)", u:"internal:p15a"},
+   {n:"Databricks docs: Genie", u:"https://docs.databricks.com/aws/en/genie/"},
+   {n:"Model Context Protocol docs", u:"https://modelcontextprotocol.io/"},
+   {n:"Anthropic engineering blog", u:"https://www.anthropic.com/engineering"},
+ ],
+ checklist:["Build a 30-question known-answer eval set and gate CI on it","Ship a multi-turn text-to-SQL agent; record accuracy, tokens, cost","Improve accuracy by improving the model/context; show the delta","Ship an MCP server with read-only, least-privilege tools"],
+ ignore:"Framework-of-the-month tutorials, agent demos without evals."},
+
+{id:"p44",track:"SYS",time:"S5 (2–3 weeks)",title:"Data App Serving: FastAPI, Auth, Docker, Deploy",
+ goal:"Serve data as a product: the time-entry and consultant-booking app pattern, built like a backend engineer would.",
+ focus:["REST design: errors, pagination, versioning, idempotency keys","validation (Pydantic), layered architecture","Postgres: migrations, transactions, locking, pooling","OIDC/JWT auth and roles","caching + background jobs","Docker, CI/CD, deploy, rollback"],
+ resources:[
+   {n:"★ PRIMARY — 100xDevs backend + DevOps sections (sections only)", u:"internal:p13"},
+   {n:"FastAPI tutorial", u:"https://fastapi.tiangolo.com/tutorial/"},
+   {n:"Databricks Apps docs", u:"https://docs.databricks.com/aws/en/dev-tools/databricks-apps/"},
+ ],
+ checklist:["REST API with validation, pagination and idempotency keys","OIDC/JWT auth with roles","Prove no double booking under concurrent requests","Deploy with CI/CD and roll back once"],
+ ignore:"Microservices, Kubernetes for v1, frontend frameworks beyond a simple UI."},
+
+{id:"p45",track:"SYS",time:"S6 (2–3 weeks)",title:"CDC, Streaming, Spark Tuning, Platform Cost, K8s Awareness",
+ goal:"Own reliability, speed and cost of what I built: CDC awareness, tuning with numbers, cost per run, incident drills.",
+ focus:["CDC: binlog/Debezium → Kafka → bronze","Spark tuning: partitions, skew, broadcast, Spark UI","profiling + load testing (p50/p95/p99)","platform cost drivers + savings (FinOps basics)","LLM cost/latency","Kubernetes awareness"],
+ resources:[
+   {n:"★ PRIMARY — Spark docs: performance tuning", u:"https://spark.apache.org/docs/latest/sql-performance-tuning.html"},
+   {n:"Debezium docs", u:"https://debezium.io/documentation/"},
+   {n:"FinOps Foundation: what is FinOps", u:"https://www.finops.org/introduction/what-is-finops/"},
+ ],
+ checklist:["CDC demo into bronze","Before/after Spark tuning numbers at 10x volume","Load test an API and fix one bottleneck","Platform cost note with 3 savings"],
+ ignore:"Running a production Kafka cluster, Kubernetes operators."},
+
+{id:"p46",track:"META",time:"weekly from week 3",title:"Career Track: Job Loop & Forward-Deployed Skills",
+ goal:"Get interviews for DE/AE roles in the UAE within about 2 months, honestly, from real slices.",
+ focus:["UAE market analysis from 10–15 postings","resume + LinkedIn from real slices (no inflation)","3 applications + 1 public post per week","timed SQL/Python sets","monthly mock + STAR stories","forward-deployed skills: discovery, plain-language trade-offs, 5-minute demos"],
+ resources:[
+   {n:"★ PRIMARY — StrataScratch", u:"https://www.stratascratch.com/"},
+   {n:"DataLemur", u:"https://datalemur.com/"},
+ ],
+ checklist:["UAE market analysis done; primary cloud chosen from data","Resume + LinkedIn v1 from real slices","3 applications/week for 4 weeks in a row","Monthly mock passed at hireable mid-level"],
+ ignore:"Mass-applying without a slice to lead with; certificates as a substitute for shipped work."},
 ];
+
+/* Slice + priority tag on every phase (2026-11-25). prio: "Required now" | "Later" | "Deep track" */
+const PHASE_TAGS = {
+  p0:{slice:"S1 · DIAG",prio:"Required now",note:"Test out first: only lessons the diagnostic shows I do not know are scheduled."},
+  p011:{slice:"S6",prio:"Later",note:"Test out first: only lessons the diagnostic shows I do not know are scheduled."},
+  p1:{slice:"S1, S2",prio:"Required now"}, p2a:{slice:"S6",prio:"Later",note:"Just in time."}, p2b:{slice:"S1, S5",prio:"Later",note:"Just in time."},
+  p2c:{slice:"S5",prio:"Later",note:"Just in time."}, p2d:{slice:"S5",prio:"Later",note:"Just in time."},
+  p3a:{slice:"S1",prio:"Later",note:"Required now if the UAE market ticket picks Azure."}, p3b:{slice:"S1",prio:"Later",note:"Required now if the UAE market ticket picks Azure."},
+  p3c:{slice:"—",prio:"Later"}, p3d:{slice:"—",prio:"Later"}, p3e:{slice:"S1",prio:"Later",note:"Required now if the UAE market ticket picks Azure."},
+  p4a:{slice:"S1",prio:"Required now"}, p4b:{slice:"S1, S6",prio:"Required now"}, p5:{slice:"S1, S2",prio:"Required now"},
+  p6:{slice:"S1, S2",prio:"Required now"}, p7:{slice:"—",prio:"Later",note:"Unless UAE postings demand it."},
+  p8a:{slice:"S1, S2",prio:"Required now"}, p8b:{slice:"S1",prio:"Required now"}, p8c:{slice:"S6",prio:"Later"},
+  p9:{slice:"S1, S2",prio:"Required now"}, p10:{slice:"JOB",prio:"Later",note:"Design drills before interviews."},
+  p11:{slice:"JOB",prio:"Later",note:"Interview-driven only."},
+  p12:{slice:"all",prio:"Required now",note:"Project map: 1 Dubai lakehouse → S1 v2/v3 (cloud variant) · 2 UAE gov API → S1-08 variant · 3 property features → S3 · 4 multi-source warehouse → S2 · 5 streaming monitor → S6. Old DE-1..4 → S1, ML-1..3 → S3, AI-1..3 → S4, FS-1 → S5, INF/OPT → Deep track."},
+  p13:{slice:"S1, S5",prio:"Required now"}, p14:{slice:"S3",prio:"Required now"}, p15:{slice:"S4",prio:"Required now"},
+  p15a:{slice:"S4",prio:"Required now"}, p15b:{slice:"S3",prio:"Required now"}, p15c:{slice:"—",prio:"Deep track"},
+  p16:{slice:"S6",prio:"Later"}, p17:{slice:"—",prio:"Deep track"}, p18:{slice:"—",prio:"Deep track"}, p19:{slice:"—",prio:"Deep track"},
+  p20:{slice:"—",prio:"Deep track"}, p21:{slice:"—",prio:"Deep track",note:"py-spy/cProfile rows are used in S6."}, p22:{slice:"—",prio:"Deep track"},
+  p23:{slice:"—",prio:"Deep track"}, p24:{slice:"—",prio:"Deep track"}, p25:{slice:"—",prio:"Deep track"}, p26:{slice:"—",prio:"Deep track"},
+  p35:{slice:"—",prio:"Deep track"},
+  p40:{slice:"S1",prio:"Required now"}, p41:{slice:"S2",prio:"Required now"}, p42:{slice:"S3",prio:"Required now"},
+  p43:{slice:"S4",prio:"Required now"}, p44:{slice:"S5",prio:"Required now"}, p45:{slice:"S6",prio:"Later"}, p46:{slice:"JOB",prio:"Required now"},
+};
+PHASES.forEach(p=>Object.assign(p, PHASE_TAGS[p.id] || {slice:"—",prio:"Later"}));
 
 /* Weekly system / concept workflow / priority tiers */
 const WEEKLY = {
@@ -747,7 +854,7 @@ const WEEKLY = {
     ["Day 1–4","Primary learning: 60–90 min concept → 30–60 min implementation → 15 min notes/retrieval"],
     ["Day 5","Application — build something without copying"],
     ["Day 6","Review — closed-book explanation, LLM review, debugging, interview questions, benchmark, write-up"],
-    ["Day 7","Rest"],
+    ["Day 7 (Tuesday)","Light day: one 15–30 min REPS drill only. Counts as a kept day."],
   ],
   concept:["Learn (primary resource)","Close it — explain with no notes","Implement the smallest working example","Break it (input/scale/concurrency/schema/network/memory/failure)","Explain: what/why/how/internals/when/when-not/failure modes/cost/alternatives","LLM review (Socratic, not lecture)","Retrieval test 1–3 days later, no notes"],
   hierarchy:["Official documentation","Established technical book","Primary structured course","Hands-on project","YouTube explanation","LLM explanation — deliberately last"],
@@ -870,9 +977,10 @@ function phaseDone(p){
   (p.checklist||[]).forEach((_,i)=>{ if(checked[p.id+"::"+i]) c++; });
   return c;
 }
-function overallStats(){
+function overallStats(prio){
+  prio = prio || "Required now";
   let total=0, done=0;
-  PHASES.forEach(p=>{ total+=phaseTotal(p); done+=phaseDone(p); });
+  PHASES.filter(p=>p.prio===prio).forEach(p=>{ total+=phaseTotal(p); done+=phaseDone(p); });
   return {total,done,pct: total? Math.round(done/total*100):0};
 }
 
@@ -887,8 +995,8 @@ function el(tag, cls, html){
 
 function renderAllocBar(){
   let segs;
-  if(allocView==="current") segs = [["DE",55],["SYS",25],["AI",20]];
-  else if(allocView==="after") segs = [["DE",50],["AI",30],["SYS",20]];
+  if(allocView==="current") segs = [["DE",60],["AI",25],["SYS",10],["META",5]];  /* before the job switch: DE/AE 60, AI-on-data + ML 25, systems 10, career 5 */
+  else if(allocView==="after") segs = [["DE",45],["AI",40],["SYS",10],["META",5]];  /* after: most deep time to the spikes (modeling + semantic = DE, AI on data = AI) */
   else segs = [["DE",30],["AI",70]];
   return segs;
 }
@@ -919,13 +1027,15 @@ function renderApp(){
 
   const titleBlock = el("div","title-block");
   titleBlock.appendChild(el("div","mono tag","LEARNING PLAN"));
-  titleBlock.appendChild(el("h1","Data Engineering → Systems → Inference Engineering"));
-  titleBlock.appendChild(el("p","strategy","Become an excellent Data Engineer with unusually strong systems and performance fundamentals, then move downward through the stack — Spark & databases into PyTorch, CUDA, runtimes and LLM inference — rather than sideways into generic AI application development."));
+  titleBlock.appendChild(el("h1",null,"Data Engineering → Data Intelligence → AI Platform"));
+  titleBlock.appendChild(el("p","strategy","Six slices (S1–S6), each shipped as v1 in 2–3 weeks and deepened later: hireable mid-level DE/AE first, growing into the data intelligence engineer role (clean models, curated context, evals, agents). Inference internals stay as the Deep track, after the job switch. Phases are a reference library: Required now / Later / Deep track."));
   topRow.appendChild(titleBlock);
 
   const prog = el("div","overall-progress");
   prog.appendChild(el("div","num", stats.pct+"%"));
-  prog.appendChild(el("div","lbl", stats.done+" / "+stats.total+" checklist items"));
+  prog.appendChild(el("div","lbl", stats.done+" / "+stats.total+" Required-now items"));
+  const deep = overallStats("Deep track");
+  prog.appendChild(el("div","lbl", "Deep track (separate): "+deep.done+" / "+deep.total));
   const bt = el("div","bar-track"); const bf = el("div","bar-fill"); bf.style.width = stats.pct+"%"; bt.appendChild(bf);
   prog.appendChild(bt);
   topRow.appendChild(prog);
@@ -945,7 +1055,7 @@ function renderApp(){
   });
   alloc.appendChild(legend);
   const toggle = el("div","alloc-toggle");
-  [["current","Now"],["after","After DE role"],["later","+6–18mo"]].forEach(([k,l])=>{
+  [["current","Before job switch"],["after","After job switch"],["later","Deep track (+6–18mo)"]].forEach(([k,l])=>{
     const b = el("button","",l);
     if(allocView===k) b.classList.add("active");
     b.onclick = ()=>{ allocView=k; renderApp(); };
@@ -1005,6 +1115,7 @@ function renderSidebar(){
     item.appendChild(dot);
     item.appendChild(el("span","idx", String(i+1).padStart(2,"0")));
     item.appendChild(el("span","name", p.title));
+    item.appendChild(el("span","prio-pill prio-"+p.prio.split(" ")[0].toLowerCase(), p.prio==="Required now"?"NOW":p.prio==="Deep track"?"DEEP":"LATER"));
     const tot = phaseTotal(p), done = phaseDone(p);
     item.appendChild(el("span","pct", tot? Math.round(done/tot*100)+"%":"—"));
     item.onclick = ()=>{ activePhaseId = p.id; renderApp(); };
@@ -1025,6 +1136,7 @@ function renderMainPhase(){
   ph.appendChild(left);
   ph.appendChild(el("div","badge", p.time));
   main.appendChild(ph);
+  main.appendChild(el("p","slice-line", "Slice: "+p.slice+" · "+p.prio+(p.note?" — "+p.note:"")));
 
   main.appendChild(el("p","goal", p.goal));
 

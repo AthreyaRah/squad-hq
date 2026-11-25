@@ -1,23 +1,62 @@
-# COVERAGE MAP (the completeness contract)
+# COVERAGE MAP (concepts, depth tags, and what is required now)
 
-This file lists every concept I must own to be a solid engineer across my target domains. Each concept has a depth target and a home: the project or catalog epic whose ticket teaches it.
+This file lists the concepts for a full-stack data and AI engineer. Each concept has a depth tag and a home. The old homes (P0-17, DE-1·H, BE-1·B, …) are catalog IDs from the archived plan. See "Old → new mapping" at the bottom of TICKET_CATALOG.md to find the slice.
 
 How it works with the JIT rule:
-- Nothing here is taught on its own. Each concept is taught when its home ticket needs it, to the depth its tag says. The map makes sure every concept HAS a home, so nothing is skipped.
-- At sprint planning, the mentor checks the map rows for the current project and makes sure the planned tickets cover them.
-- At each stage audit (CLAUDE.md GATES), every row for that stage must be covered by a Done ticket at its depth. Any uncovered row gets a ticket before the gate passes. Mark coverage in the Concept Log (new rows, ticket ID in the Notes).
-- If a real ticket needs a concept that is not listed here, add the row. Do not remove rows without asking me.
+- Everything needed for the current slice is covered. The rest is covered when a ticket needs it.
+- At sprint planning, the mentor checks the **Required now** rows for the slice. The planned tickets must cover them by the end of that slice version.
+- At the monthly re-grade, covered rows link to a Done ticket in DEPTH_GRID.md evidence.
+- If a real ticket needs a concept that is not listed, add the row. Do not remove rows without asking me.
 
-Depth tags:
-- **[S] Solid:** I build it, debug it under pressure, explain the trade-offs, and answer interview questions on it with no notes. Usually used in 2+ tickets.
-- **[W] Working:** I used it correctly in a shipped ticket and can explain what it does and why it was chosen.
-- **[A] Aware:** one spike or ADR: what it is, when to choose it, and why it was or was not chosen here. Enough to speak about it in a design review or interview.
+Depth tags: **[S] Solid** (build, debug, explain trade-offs, answer interview questions with no notes) · **[W] Working** (used correctly in a shipped ticket) · **[A] Aware** (what it is, when to choose it).
 
-Homes use catalog IDs from TICKET_CATALOG.md (for example `P0-17`, `DE-2·A` = DE-2 epic A).
+Priority tags (on every section heading):
+- `REQ-NOW`: needed for an S1–S6 v1 ticket or for DE/AE interviews.
+- `REQ-NOW (partial)`: only the rows named in the table below are required now; the rest are LATER.
+- `JIT`: learned just in time at its depth tag when a slice ticket hits it (no proactive ticket).
+- `LATER`: after the job switch or in a v2/v3.
+- `DEEP`: Deep track (after S1–S5 v1 and the job switch, or when a job needs it).
+
+| § | Section | Tag | Slice | Required-now rows (for partial sections) |
+|---|---|---|---|---|
+| 1 | Python | REQ-NOW (partial) | S1, DIAG | objects/mutability, functions/scope, comprehensions, classes/dataclasses, exceptions, generators, context managers, decorators, type hints, modules/packaging (uv), files/JSON, logging/config, CLI, pytest/fixtures/parametrize/mocks. Concurrency, asyncio, profiling, metaprogramming → LATER (S6) |
+| 2 | Software craft | REQ-NOW (partial) | all | Git branch/PR/squash, code review, clean code, ADRs, estimation, semver. Rebase/bisect/reflog, SOLID patterns, legacy refactoring → LATER |
+| 3 | SQL | REQ-NOW | S1, S2, DIAG | all rows ([S] are interview-critical) |
+| 4 | Database internals | JIT | S1, S5 | indexes, transactions, isolation, locking when S5-05 needs them |
+| 5 | Linux, OS, shell | JIT | S1, S6 | shell basics in S1; diagnosis tools in S6 |
+| 6 | Networking | JIT | S1, S5 | HTTP, DNS→TCP→TLS trace when S1-08/S5 need it |
+| 7 | DSA | LATER | JOB | interview-driven only: assigned in /apply timed sets when postings demand it |
+| 8 | Data modeling | REQ-NOW (spike) | S1, S2 | all rows except Data Vault (A) |
+| 9 | Data engineering | REQ-NOW | S1 | all rows |
+| 10 | Orchestration and transformation | REQ-NOW (partial) | S1 | dbt core rows, one orchestrator (Airflow or Databricks Workflows). ADF, Dagster/Prefect → LATER |
+| 11 | Spark and lakehouse | REQ-NOW | S1, S6 | all rows; MLlib → LATER |
+| 12 | Streaming | LATER | S6 | CDC and Kafka basics at [A] in S6-01 |
+| 13 | Warehouses and cloud | REQ-NOW (partial) | S1, DIAG-04 | the primary cloud chosen by DIAG-04 + AWS core (§34). Snowflake, Synapse, Fabric → LATER unless postings demand them |
+| 14 | Data quality | REQ-NOW | S1, S2 | all rows |
+| 15 | Cloud, IaC, CI/CD | REQ-NOW (partial) | S1, S5 | GitHub Actions, deployment + rollback, cost awareness. Terraform, Azure DevOps → LATER |
+| 16 | Security and identity | REQ-NOW (partial) | S2, S4, S5 | secrets, authN vs authZ, RBAC, OAuth 2.0/OIDC, JWT, PII/GDPR, LLM prompt injection. SAML, STRIDE, scanning, Azure planes → LATER |
+| 17 | Backend | REQ-NOW (partial) | S1, S4, S5 | REST design, validation, layered architecture, ORM/migrations, caching, queues/background jobs, retries/timeouts/circuit breakers, rate limiting, graceful shutdown/health checks, observability, concurrency control (transactions, FOR UPDATE, optimistic locking). Marketplace, payments, inventory, search, Django, TS stack, gRPC, raw sockets → DEEP |
+| 18 | Distributed systems | LATER (partial) | S6, JOB-SD | scale estimation, SLOs, idempotency, backpressure → REQ-NOW for design interviews |
+| 19 | Math for ML | JIT | S3 | as S3 tickets need (logistic loss, gradient descent) |
+| 20 | Statistics and experiments | REQ-NOW (partial) | S3, JOB | descriptive stats, CIs, t-test, chi-square, A/B design, power. Causal inference, Bayesian A/B, bandits → LATER |
+| 21 | Classical ML | JIT | S3 | logistic regression, trees, boosting, evaluation, leakage, imbalance, calibration |
+| 22 | CX data science | REQ-NOW (partial) | S3 | churn framing, cohorts, GRR/NRR, health scores, stakeholder reports. Survival, CLV, uplift → LATER (S3 v2) |
+| 23 | Deep learning | JIT | — | only if a ticket needs it; otherwise DEEP |
+| 24 | MLOps | REQ-NOW | S3 | all rows except Feast (A), shadow/canary (LATER) |
+| 25 | LLMs and AI engineering | REQ-NOW (partial) | S4 | embeddings, prompting, structured outputs, tool calling, evals, RAG, vector indexes, agents, MCP, guardrails, cost/latency, observability. BPE from scratch, fine-tuning, GPT from scratch → DEEP |
+| 26 | Frontend | DEEP | S5 (minimal) | only a simple UI for S5 (Streamlit/HTMX) |
+| 27 | DevOps, K8s, SRE | REQ-NOW (partial) | S1, S5, S6 | Docker and Compose, incident management. Kubernetes, Helm, Argo CD → LATER (S6 v2) |
+| 28 | Performance engineering | LATER | S6 | p50/p95/p99 and profiling in S6 v1 |
+| 29 | C++ | DEEP | — | |
+| 30 | GPU, CUDA, Triton, TensorRT | DEEP | — | |
+| 31 | LLM inference and serving | DEEP | S6 (cost only) | |
+| 32 | Professional skills | REQ-NOW | all | all rows |
+| 33 | Roadmap traceability | — | — | each phase carries its tag |
+| 34–41 | New (AWS, semantic layer and BI, governance, data intelligence, FDE, cost, job search, AI-use) | REQ-NOW | see rows | all rows |
 
 ---
 
-## 1. Python engineering
+## 1. Python engineering — `REQ-NOW (partial)`
 
 **Core language and the object model**
 - [S] Names, objects, references, mutability, identity vs equality, copying (shallow vs deep) — P0-09, P0-24 (mutable default bug), DE-1·H
@@ -60,7 +99,7 @@ Homes use catalog IDs from TICKET_CATALOG.md (for example `P0-17`, `DE-2·A` = D
 - [W] Test-driven development where it helps — BE-1·B
 - [S] Coverage and what it does not tell you — P0-23
 
-## 2. Software engineering craft
+## 2. Software engineering craft — `REQ-NOW (partial)`
 - [S] Git: commits, branches, PRs, rebase, merge vs rebase, conflicts, tags — P0-02 to P0-05, DE-1·G
 - [W] Git deeper: cherry-pick, bisect (find a regression), reflog (recover lost work), stash — DE-1·G, INF-1
 - [S] Code review: giving and receiving, severity, tone — every review ticket
@@ -72,7 +111,7 @@ Homes use catalog IDs from TICKET_CATALOG.md (for example `P0-17`, `DE-2·A` = D
 - [W] Semantic versioning, CHANGELOGs, release notes — P0-25 onward
 - [W] Dependency management and upgrades (pinning, vulnerability alerts) — fleet maintenance
 
-## 3. SQL (from my baseline: CTEs, some window functions)
+## 3. SQL (from my baseline: CTEs, some window functions) — `REQ-NOW`
 - [S] Query logic order (FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY) — DE-1·0
 - [S] Join semantics: inner, left, full, cross, self, anti-join, semi-join; fan-out — DE-1·0, DE-2·A
 - [S] NULL logic (three-valued logic, `COUNT(*)` vs `COUNT(col)`, `NOT IN` with NULLs, `COALESCE`) — DE-1·0
@@ -91,9 +130,9 @@ Homes use catalog IDs from TICKET_CATALOG.md (for example `P0-17`, `DE-2·A` = D
 - [S] Reading query plans (`EXPLAIN ANALYZE`): scans, join algorithms (nested loop, hash, merge), estimates vs actuals — DE-1·F, DE-2·SQL
 - [S] Partitioning and partition pruning — DE-1·D
 - [S] Transactions and isolation levels in practice — DE-1·F
-- [S] Timed SQL interview problems — standing practice from Stage 1
+- [S] Timed SQL interview problems — standing practice from week 3 (/apply timed sets)
 
-## 4. Database internals (roadmap p2d)
+## 4. Database internals (roadmap p2d) — `JIT`
 - [S] Pages, heap files, B-trees, how an index lookup works — DE-1·F
 - [S] ACID; isolation levels (read committed, repeatable read, serializable) and anomalies (dirty read, non-repeatable read, phantom, write skew) — DE-1·F
 - [S] Locks, deadlocks, MVCC (`xmin`/`xmax`), why readers do not block writers — DE-1·F
@@ -109,7 +148,7 @@ Homes use catalog IDs from TICKET_CATALOG.md (for example `P0-17`, `DE-2·A` = D
 - [W] Full-text search internals (inverted index, ranking, trigram) — BE-1·L
 - [A] Column stores and vectorized execution — DE-2 (Snowflake), DE-3
 
-## 5. Linux, OS, and the shell (roadmap p2a)
+## 5. Linux, OS, and the shell (roadmap p2a) — `JIT`
 - [S] Terminal, paths, permissions, environment variables, PATH — P0-01, P0-20
 - [S] Shell scripting: bash, pipes, redirection, exit codes, `set -euo pipefail`, grep, sed, awk, jq, xargs, find — DE-1·I
 - [S] Kernel vs user space, system calls — DE-1·E
@@ -125,7 +164,7 @@ Homes use catalog IDs from TICKET_CATALOG.md (for example `P0-17`, `DE-2·A` = D
 - [W] Memory-mapped files (`mmap`) — SYS-1
 - [S] Sockets: TCP server and client from raw sockets, framing a binary protocol, backpressure — BE-1·A, SYS-1
 
-## 6. Networking (roadmap p2b)
+## 6. Networking (roadmap p2b) — `JIT`
 - [S] The full path: DNS → IP → TCP → TLS → HTTP → load balancer → app → DB — DE-1·A, BE-1·A
 - [S] Packet capture with tcpdump/Wireshark: TCP handshake, TLS handshake, HTTP request annotated — BE-1·A
 - [S] UDP vs TCP; a minimal DNS resolver over UDP — BE-1·A
@@ -140,8 +179,8 @@ Homes use catalog IDs from TICKET_CATALOG.md (for example `P0-17`, `DE-2·A` = D
 - [W] CORS, cookies, sessions — BE-1·B, FS-1
 - [A] CDNs and edge caching — BE-1·E
 
-## 7. Data structures and algorithms (roadmap p11)
-Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALSO appears once in a real ticket:
+## 7. Data structures and algorithms (roadmap p11) — `LATER`
+Interview-driven practice from week 3 (/apply timed sets; NeetCode patterns only if postings demand DSA). Each pattern ALSO appears once in a real ticket:
 - [S] Complexity (Big-O, amortized) — every perf ticket
 - [S] Arrays, strings, hash maps/sets — DE-1 (dedupe)
 - [S] Two pointers, sliding window — DE-4 (windowed counts)
@@ -159,7 +198,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [W] Backtracking, greedy — practice set
 - [S] Writing clean, bug-free Python under time pressure — DE-INT, BE-INT
 
-## 8. Data modeling
+## 8. Data modeling — `REQ-NOW (spike)`
 - [S] Conceptual, logical, physical models; ER diagrams — DE-2·A, BE-2
 - [S] Normalization 1NF → 3NF, BCNF; when to denormalize — DE-2·A (normalize Olist raw first)
 - [S] OLTP vs OLAP modeling — DE-2·A, BE-2
@@ -177,7 +216,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [S] Feature tables and point-in-time correctness — ML-1
 - [W] Semantic layer / metrics definitions (dbt metrics or MetricFlow A) — DE-2·C
 
-## 9. Data engineering: batch, formats, and pipelines
+## 9. Data engineering: batch, formats, and pipelines — `REQ-NOW`
 - [S] Ingestion patterns: full, incremental (watermark with overlap), CDC, append vs upsert — DE-1
 - [S] Idempotency, reruns, backfills, deduplication — P0-17, DE-1, DE-2·D
 - [S] Late-arriving data and late-arriving dimensions — DE-2·C, DE-3·B
@@ -191,14 +230,14 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [W] Python dataframes: pandas (S), Polars (W), DuckDB (W) for local analytics — DE-1·B, DE-2
 - [S] Roadmap p12 portfolio, all five shipped: Dubai real estate lakehouse (DE-3), UAE government open data pipeline (DE-1 public part 2), property feature pipeline (DE-3·F), multi-source warehouse (DE-2 public), streaming transaction monitor (DE-4 public part 2)
 
-## 10. Orchestration and transformation
+## 10. Orchestration and transformation — `REQ-NOW (partial)`
 - [S] Airflow: DAGs, operators, sensors, scheduling, retries, SLAs, XCom, backfills, catchup, idempotent tasks keyed on logical date, pools — DE-2·D
 - [W] Dynamic task mapping, task groups, deferrable operators — DE-2·D
 - [S] dbt: sources, refs, staging/intermediate/marts, materializations, incremental models, snapshots, tests (generic, singular, custom), macros, Jinja, seeds, docs, lineage, exposures (W) — DE-2·C
 - [A] Dagster / Prefect vs Airflow (ADR) — DE-2·D
 - [W] ADF pipelines, triggers, integration runtime, metadata-driven ingestion — DE-3·B
 
-## 11. Distributed processing: Spark and the lakehouse
+## 11. Distributed processing: Spark and the lakehouse — `REQ-NOW`
 - [S] Spark architecture: driver, executors, tasks, stages, partitions, shuffle — DE-3
 - [S] Transformations vs actions, lazy evaluation, DAG — DE-3
 - [S] Joins (broadcast vs sort-merge vs shuffle hash), aggregations, window functions in PySpark — DE-3
@@ -214,7 +253,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [A] Delta Sharing; Photon — DE-3·C
 - [W] Spark MLlib pipeline — ML-6
 
-## 12. Streaming
+## 12. Streaming — `LATER`
 - [S] Kafka: topics, partitions, keys and ordering, offsets, consumer groups, rebalancing, retention, replay — DE-4
 - [S] Delivery semantics: at-most-once, at-least-once, exactly-once (idempotent producer, transactions, idempotent sinks) — DE-4
 - [W] Log compaction — DE-4
@@ -227,7 +266,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [A] Apache Flink vs Spark Structured Streaming (ADR) — DE-4
 - [A] Kinesis / Event Hubs mapping — DE-3·0 (cloud equivalence)
 
-## 13. Warehouses and cloud data platforms
+## 13. Warehouses and cloud data platforms — `REQ-NOW (partial)`
 - [S] Snowflake: architecture (storage/compute separation), virtual warehouses, loading (stages, COPY), clustering, time travel, zero-copy clone, streams and tasks, cost control — DE-2·F
 - [W] Synapse: serverless vs dedicated SQL, distribution strategies (hash, round-robin, replicated) — DE-3·D
 - [W] Microsoft Fabric: lakehouse, warehouse, pipelines, real-time intelligence basics — FAB-1
@@ -236,7 +275,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [W] AWS equivalence (S3, Glue, Athena, EMR, Redshift, Kinesis, Lambda, Step Functions, IAM) — DE-3·0 ADR (for Europe/UAE job market)
 - [A] BigQuery architecture — DE-3·0 ADR
 
-## 14. Data quality, reliability, observability (roadmap p9)
+## 14. Data quality, reliability, observability (roadmap p9) — `REQ-NOW`
 - [S] Schema, null, uniqueness, referential, accepted-values checks — DE-2·C
 - [S] Freshness and volume anomaly detection — DE-2·E
 - [S] Reconciliation against source systems — DE-1·0, DE-2 mastery gate
@@ -245,14 +284,14 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [W] Great Expectations or Soda (one of them) — DE-2·E
 - [S] The five-failure drill — DE-2·E
 
-## 15. Cloud, infrastructure as code, CI/CD
+## 15. Cloud, infrastructure as code, CI/CD — `REQ-NOW (partial)`
 - [S] Terraform: providers, resources, variables, outputs, modules, remote state, plan/apply/destroy, drift — DE-3·A
 - [S] GitHub Actions: workflows, jobs, matrices, services, secrets, environments, caching — P0-23, BE-1
 - [W] Azure DevOps multi-stage YAML pipelines — DE-3·E
 - [S] Deployment strategies: rolling, blue-green, canary, feature flags, rollback — BE-2, FS-2
 - [S] Cost awareness: budgets, auto-termination, cost per run — DE-3, INF
 
-## 16. Security and identity (I work at an identity company: this domain must be strong)
+## 16. Security and identity (I work at an identity company: this domain must be strong) — `REQ-NOW (partial)`
 - [S] Secrets management (env, Key Vault, never in git), rotation — P0-20, DE-3·B
 - [S] Authentication vs authorization; RBAC, ABAC (W), least privilege — BE-1·B, DE-3·B
 - [S] Password hashing (bcrypt/argon2), sessions vs tokens — BE-1·B
@@ -268,7 +307,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [S] LLM security: prompt injection (direct and indirect), tool least privilege, output validation — AI-1, AI-2, AI-3
 - [S] Azure management plane vs data plane, managed identities — DE-3·B
 
-## 17. Backend engineering (roadmap p2c)
+## 17. Backend engineering (roadmap p2c) — `REQ-NOW (partial)`
 - [S] A standalone product built from an empty repo (the marketplace: catalog, carts, orders, payments, refunds, notifications) — BE-1
 - [S] HTTP server from raw sockets, then FastAPI — BE-1·A
 - [S] REST API design: resources, status codes, pagination (cursor vs offset), filtering, errors (RFC 9457), versioning, idempotency — BE-1·B
@@ -294,7 +333,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [S] A second backend stack in TypeScript: Node.js runtime and event loop, NestJS (modules, controllers, providers, guards, interceptors, DTO validation), Prisma (schema, migrations), BullMQ jobs, WebSocket gateways — FS-1
 - [S] Backend system design drills: rate limiter, job queue, URL shortener, notification system, payment system, seat booking, chat, news feed, distributed cache, typeahead, file storage, metrics system — BE-SD
 
-## 18. Distributed systems and system design (roadmap p10)
+## 18. Distributed systems and system design (roadmap p10) — `LATER (partial)`
 - [S] Requirements, scale estimation (back-of-envelope) — DE-SD, every project
 - [S] Availability, reliability, scalability; SLIs, SLOs, error budgets — FS-2, fleet
 - [S] Horizontal vs vertical scaling, stateless services — BE-1·H
@@ -308,7 +347,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [S] Backpressure, load shedding, queue-based leveling — BE-1·F, DE-4
 - [S] Classic designs practiced: batch ingestion, CDC pipeline, lakehouse, event-driven platform, rate limiter, job queue, URL shortener, chat, notification system, feature store, RAG platform, LLM serving platform — DE-SD, BE-INT, ML-INT, AI-INT, FS-2, INF-5
 
-## 19. Mathematics for ML (taught JIT inside from-scratch tickets)
+## 19. Mathematics for ML (taught JIT inside from-scratch tickets) — `JIT`
 - [S] Vectors, matrices, dot product, norms, matrix multiplication, transpose, inverse — ML-0 (linear regression from scratch)
 - [S] Eigenvalues/eigenvectors, SVD, projections — ML-0 (PCA from SVD)
 - [S] Derivatives, partial derivatives, gradients, the chain rule, Jacobian (W) — ML-0 (logistic regression gradient by hand), ML-5 (backprop)
@@ -318,7 +357,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [W] Constrained optimization and Lagrange multipliers (SVM dual) — ML-0 (SVM)
 - [S] Information theory: entropy, cross-entropy, KL divergence, information gain — ML-0 (decision trees), ML-5
 
-## 20. Statistics, experimentation, and causal inference
+## 20. Statistics, experimentation, and causal inference — `REQ-NOW (partial)`
 **Descriptive and inferential (ML-0 stats lab; each in NumPy first, then SciPy/statsmodels)**
 - [S] Descriptive statistics, distributions, outliers, skew, transformations
 - [S] Sampling, sampling bias, the central limit theorem (by simulation)
@@ -350,7 +389,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [S] Uplift modeling (T-learner, S-learner, X-learner), Qini curves
 - [A] Synthetic control, instrumental variables, regression discontinuity
 
-## 21. Classical machine learning
+## 21. Classical machine learning — `JIT`
 **Algorithms (from scratch in NumPy first, then library; ML-0 unless noted)**
 - [S] Linear regression (normal equation and gradient descent), polynomial features — ML-0, ML-3
 - [S] Regularization: ridge, lasso, elastic net — ML-0, ML-3
@@ -419,7 +458,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [W] Graph features and link prediction — Case 3
 - [W] Tabular Q-learning, Gymnasium environments — ML-6
 
-## 22. CX data science (my target domain: senior DS in CX)
+## 22. CX data science (my target domain: senior DS in CX) — `REQ-NOW (partial)`
 - [S] Churn framing: logo vs revenue churn, prediction horizon, label leakage — ML-1 Ping
 - [S] Survival analysis: Kaplan-Meier curves, log-rank test, Cox proportional hazards, discrete-time hazard models — ML-1 Ping
 - [S] Customer lifetime value: BG/NBD and Gamma-Gamma models; simple heuristic CLV as a baseline — ML-4 (Olist customers; Ping accounts)
@@ -433,7 +472,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [S] Translating models into stakeholder decisions and reports — every ML project
 - [W] LLM-based ticket summarization and auto-triage with evals — AI-3 Ping
 
-## 23. Deep learning (ML-5 unless noted)
+## 23. Deep learning (ML-5 unless noted) — `JIT`
 - [S] Perceptron, MLP, activation functions (sigmoid, tanh, ReLU, GELU), softmax
 - [S] Loss functions: MSE, cross-entropy, focal loss (W)
 - [S] Backpropagation from scratch in NumPy, gradient checking
@@ -453,7 +492,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [W] Object detection and image segmentation with pretrained models; OpenCV basics — Module 8 small tasks
 - [S] Debugging training: overfit one batch, loss curves, NaNs — ML-5 incidents
 
-## 24. MLOps
+## 24. MLOps — `REQ-NOW`
 - [S] Experiment tracking (MLflow) — ML-3
 - [S] Data and model versioning (DVC W), model registry, reproducibility — ML-3
 - [S] Training pipelines as packages with tests and configs — ML-3
@@ -466,7 +505,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [S] Model cards and documentation — every ML project
 - [W] Warm/cold starts and request batching for model servers — ML-3, INF-4
 
-## 25. LLMs and AI engineering (Stage 4)
+## 25. LLMs and AI engineering (S4) — `REQ-NOW (partial)`
 - [S] Tokenization (BPE from scratch), vocabularies, token costs — AI-4, AI-1
 - [S] Embeddings and similarity search — AI-2
 - [S] Transformer inference basics: prefill vs decode, context windows, sampling (temperature, top-p, top-k) — AI-1, AI-4
@@ -485,7 +524,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [A] Preference tuning (RLHF, DPO), distillation, multimodal models — AI-4 spike
 - [S] Building a GPT-style model from scratch; KV cache, GQA, RoPE, RMSNorm — AI-4
 
-## 26. Frontend (Stage 5)
+## 26. Frontend (Deep track; S5 needs only a simple UI) — `DEEP`
 - [S] HTML semantics, CSS layout (flexbox, grid), responsive design; Tailwind (W) — FS-1
 - [S] JavaScript: types, closures, `this`, modules, the event loop, promises, async/await — FS-1
 - [S] TypeScript: types, interfaces, unions, generics, narrowing, strict mode — FS-1
@@ -512,7 +551,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [S] WebRTC: signaling, STUN/TURN, peer connections, SFU (A), screen share — FS-4
 - [S] Frontend system design drills: news feed with infinite scroll, typeahead, real-time dashboard, chat client, product page and checkout, collaborative editor, kanban board, resumable uploader, design system, carousel, offline-first PWA, multi-step form wizard — FS-SD, FS-INT
 
-## 27. DevOps, containers, Kubernetes, SRE
+## 27. DevOps, containers, Kubernetes, SRE — `REQ-NOW (partial)`
 - [S] Docker: images, layers, caching, multi-stage builds, non-root users, image size, volumes, networks, Compose — P0-15, BE-1·G
 - [S] Kubernetes: pods, deployments, services, ingress, ConfigMaps, Secrets, resource requests/limits, liveness/readiness/startup probes, HPA, Jobs and CronJobs, StatefulSets (W), namespaces — FS-2 (and P0's cron moves to a K8s CronJob)
 - [S] Helm charts — FS-2
@@ -523,7 +562,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [S] Incident management: on-call, severity, comms, blameless postmortems — fleet (all stages)
 - [S] Load testing (k6 or Locust) — BE-1·H, INF-1
 
-## 28. Performance engineering (roadmap p16, p21)
+## 28. Performance engineering (roadmap p16, p21) — `LATER`
 - [S] Latency percentiles (p50/p95/p99), throughput, utilization, saturation — INF-1
 - [S] The 10-step performance loop; changing one variable at a time; benchmarking with warm-up and variance — INF-1
 - [S] Compute-bound vs memory-bound vs I/O-bound vs launch-bound — INF-1, INF-2
@@ -531,7 +570,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [S] Profilers: perf, flame graphs, py-spy, cProfile, line_profiler, PyTorch profiler, Nsight Systems, Nsight Compute — INF-1 to INF-3
 - [S] Cost per request and per token — INF-4
 
-## 29. C++ (roadmap p17)
+## 29. C++ (roadmap p17) — `DEEP`
 - [S] Compilation and linking, headers, CMake — INF-2·0
 - [S] References vs pointers, stack vs heap, RAII — INF-2·0
 - [S] Smart pointers (`unique_ptr`, `shared_ptr`, `weak_ptr`) — INF-2·0
@@ -542,7 +581,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [S] Sanitizers (AddressSanitizer, ThreadSanitizer) and debugging (gdb/lldb W) — INF-2·0
 - [S] Binding C++ to Python (pybind11) and benchmarking against Python — INF-2·0
 
-## 30. GPU, CUDA, Triton, TensorRT, PyTorch performance (roadmap p18–p21, p24, p25)
+## 30. GPU, CUDA, Triton, TensorRT, PyTorch performance (roadmap p18–p21, p24, p25) — `DEEP`
 - [S] GPU architecture: SIMT, warps, threads, blocks, grids, SMs; occupancy; divergence — INF-2
 - [S] Memory hierarchy: registers, shared memory, L1/L2, global memory; coalesced access; bank conflicts — INF-2
 - [S] Host↔device transfers over PCIe, pinned memory — INF-2
@@ -554,7 +593,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [S] PyTorch performance: `inference_mode`, pinned memory and async loading, DataLoader workers, `torch.compile`, mixed precision (FP16/BF16) and Tensor Cores, CUDA graphs in PyTorch — INF-3
 - [S] TensorRT: ONNX export, engine building, FP16/INT8 (calibration), layer fusion, timing cache — INF-4·T
 
-## 31. LLM inference and serving (roadmap p22, p23, p26, p35)
+## 31. LLM inference and serving (roadmap p22, p23, p26, p35) — `DEEP`
 - [S] Prefill (compute-bound) vs decode (memory-bandwidth-bound) — INF-4
 - [S] KV-cache memory math (layers, heads, head dim, dtype, sequence length, batch) — INF-4
 - [S] Batching: static, dynamic, continuous; chunked prefill — INF-4
@@ -568,7 +607,7 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 - [A] Mixture-of-experts serving, state-space models (Mamba) — INF-4 spike
 - [S] Kubernetes GPU serving and autoscaling; the full inference lab — INF-5
 
-## 32. Professional and career skills
+## 32. Professional and career skills — `REQ-NOW`
 - [S] Stakeholder communication: plain-language updates, incident comms, saying no with options — persona tickets
 - [S] Writing: ADRs, RFCs, READMEs, postmortems, model cards, stakeholder reports — every project
 - [S] Estimation and commitment, extension requests — RDS model
@@ -580,9 +619,9 @@ Daily practice from Stage 1 (NeetCode patterns, Python, timed). Each pattern ALS
 
 ## 33. Roadmap traceability (every roadmap.html phase item → home)
 
-Generated from roadmap.html focus and checklist items. Every item has a home. The stage audit ticks these too.
+Generated from roadmap.html focus and checklist items. Every item has a home and a tag (`[REQ-NOW · slice]`, `[LATER]`, `[DEEP]`). The monthly re-grade ticks REQ-NOW items. Old homes map to slices via TICKET_CATALOG.md.
 
-**p0 Python Engineering Foundation** — focus (object model & mutability; functions & scope; comprehensions & functional tools; modules & classes; error handling & testing; iterators & generators; files & APIs & databases; packaging & environments; GIL & concurrency (0.11)) → P0, DE-1·H
+**p0 Python Engineering Foundation** `[REQ-NOW (test out first) · S1]` — focus (object model & mutability; functions & scope; comprehensions & functional tools; modules & classes; error handling & testing; iterators & generators; files & APIs & databases; packaging & environments; GIL & concurrency (0.11)) → P0, DE-1·H
 - [ ] Write a small package with clean structure → P0-08, DE-1·H (wheel)
 - [ ] Write tests for it → P0-10, P0-12
 - [ ] Handle failures without swallowing errors → P0-11, P0-24
@@ -596,13 +635,13 @@ Generated from roadmap.html focus and checklist items. Every item has a home. Th
 - [ ] Profile a slow function → DE-1·H (cProfile, line_profiler, py-spy)
 - [ ] Explain the GIL at a practical level → DE-1·H (threads vs processes)
 
-**p011 Concurrency, GIL & Async (0.11)** — focus (concurrency vs parallelism; CPU-bound vs I/O-bound; GIL; threading + locks; multiprocessing + managers; concurrent.futures; asyncio event loop; interview-style practice problems) → DE-1·H
+**p011 Concurrency, GIL & Async (0.11)** `[LATER (test out first) · S6]` — focus (concurrency vs parallelism; CPU-bound vs I/O-bound; GIL; threading + locks; multiprocessing + managers; concurrent.futures; asyncio event loop; interview-style practice problems) → DE-1·H
 - [ ] Build the same I/O workload sync / threaded / asyncio and benchmark all three → DE-1·H (sync/threaded/asyncio downloads)
 - [ ] Build a CPU-bound workload and compare threads vs processes → DE-1·H (threads vs processes)
 - [ ] Deliberately introduce a race condition, fix it, explain the fix → DE-1·H (manifest race bug)
 - [ ] Choose sync/threading/multiprocessing/asyncio for a real workload and defend the choice → DE-1·H (defended choice ADR)
 
-**p1 SQL** — focus (DDL/DML; joins & set ops; CTEs & window functions; views/CTAS; indexes & partitions; EXISTS vs IN vs JOIN; recursive CTEs; GROUPING SETS / CUBE; query plans) → P0-16 to P0-18, DE-1·0, DE-1·F, DE-2·SQL
+**p1 SQL** `[REQ-NOW · S1, S2]` — focus (DDL/DML; joins & set ops; CTEs & window functions; views/CTAS; indexes & partitions; EXISTS vs IN vs JOIN; recursive CTEs; GROUPING SETS / CUBE; query plans) → P0-16 to P0-18, DE-1·0, DE-1·F, DE-2·SQL
 - [ ] Model an unfamiliar schema correctly → DE-2·A (normalize Olist), BE-1·B
 - [ ] Write correct SQL for a non-trivial problem → DE-1·0, DE-2·SQL
 - [ ] Explain the query in plain language → every SQL PR (explain in plain language)
@@ -611,111 +650,111 @@ Generated from roadmap.html focus and checklist items. Every item has a home. Th
 - [ ] Improve the query → DE-2·SQL
 - [ ] Explain why the new query is better → DE-2·SQL (EXISTS vs IN vs JOIN)
 
-**p2a Linux / Operating Systems** — focus (kernel vs user space; processes & threads; scheduling; virtual memory & paging; filesystems; sockets; strace/ps/top/vmstat/lsof/ss) → DE-1·E, DE-1·I, SYS-1
+**p2a Linux / Operating Systems** `[LATER (JIT) · S6]` — focus (kernel vs user space; processes & threads; scheduling; virtual memory & paging; filesystems; sockets; strace/ps/top/vmstat/lsof/ss) → DE-1·E, DE-1·I, SYS-1
 - [ ] Explain process vs thread → DE-1·E
 - [ ] Explain virtual memory & paging → DE-1·E, SYS-1
 - [ ] Use ps/top/vmstat/strace to diagnose a running process → DE-1·E
 - [ ] Explain how a filesystem stores and retrieves a file → SYS-1, DE-1·E
 
-**p2b Networking** — focus (TCP handshake & retransmission; DNS; HTTP/HTTPS/TLS; load balancing & reverse proxies; NAT; congestion & latency) → DE-1·A, BE-1·A, BE-1·H
+**p2b Networking** `[LATER (JIT) · S1, S5]` — focus (TCP handshake & retransmission; DNS; HTTP/HTTPS/TLS; load balancing & reverse proxies; NAT; congestion & latency) → DE-1·A, BE-1·A, BE-1·H
 - [ ] Trace browser → DNS → IP → TCP → TLS → HTTP → LB → app → DB → DE-1·A, BE-1·A (tcpdump)
 - [ ] Explain the TCP handshake and why retransmission happens → BE-1·A
 - [ ] Explain what a reverse proxy does and why you'd use one → BE-1·H (nginx)
 
-**p2c Backend Systems** — focus (routing & serialization; auth/authz; controllers/services/repositories; caching; queues & background jobs; fault tolerance; observability; graceful shutdown) → BE-1 epics A–L
+**p2c Backend Systems** `[LATER (JIT) · S5]` — focus (routing & serialization; auth/authz; controllers/services/repositories; caching; queues & background jobs; fault tolerance; observability; graceful shutdown) → BE-1 epics A–L
 - [ ] Design a REST API with proper auth and validation → BE-1·B, BE-1·I
 - [ ] Explain caching strategy trade-offs → BE-1·E
 - [ ] Explain how a queue decouples producer/consumer failure modes → BE-1·F
 
-**p2d Database Engineering** — focus (pages & B-trees; ACID & isolation; locks & MVCC; WAL & replication; connection pooling; query execution) → DE-1·F, SYS-1, BE-1·D
+**p2d Database Engineering** `[LATER (JIT) · S5]` — focus (pages & B-trees; ACID & isolation; locks & MVCC; WAL & replication; connection pooling; query execution) → DE-1·F, SYS-1, BE-1·D
 - [ ] Explain how a B-tree index speeds up a lookup → DE-1·F
 - [ ] Explain MVCC and why it avoids read locks → DE-1·F
 - [ ] Explain WAL and its role in crash recovery → DE-1·F, SYS-1
 - [ ] Explain a transaction isolation level and its trade-off → DE-1·F
 
-**p3a Azure Data Fundamentals** — focus (relational vs non-relational; transactional vs analytical; Azure SQL; Cosmos DB; Storage; Synapse; ADF; Databricks) → DE-3·0, DE-3
+**p3a Azure Data Fundamentals** `[LATER (REQ-NOW if DIAG-04 picks Azure)]` — focus (relational vs non-relational; transactional vs analytical; Azure SQL; Cosmos DB; Storage; Synapse; ADF; Databricks) → DE-3·0, DE-3
 - [ ] Explain when to use each core Azure data service → DE-3·0 ADR
 
-**p3b Azure Data Factory** — focus (pipelines/activities/linked services; triggers & scheduling; integration runtime; incremental ingestion; metadata-driven pipelines; secrets & monitoring) → DE-3·B
+**p3b Azure Data Factory** `[LATER (REQ-NOW if DIAG-04 picks Azure)]` — focus (pipelines/activities/linked services; triggers & scheduling; integration runtime; incremental ingestion; metadata-driven pipelines; secrets & monitoring) → DE-3·B
 - [ ] Build a pipeline with parameters and triggers → DE-3·B
 - [ ] Implement incremental ingestion with watermarking → DE-3·B
 - [ ] Handle a late-arriving record and a backfill → DE-3·B
 - [ ] Wire in retries and error handling → DE-3·B
 - [ ] Explain idempotency in this pipeline → DE-3·B
 
-**p3c Azure Synapse** — focus (dedicated vs serverless SQL; Spark pool; external data; partitioning & distribution) → DE-3·D
+**p3c Azure Synapse** `[LATER]` — focus (dedicated vs serverless SQL; Spark pool; external data; partitioning & distribution) → DE-3·D
 - [ ] Query external data via serverless SQL → DE-3·D
 - [ ] Explain distribution strategy trade-offs for a dedicated SQL pool → DE-3·D ADR
 
-**p3d Azure DevOps + CI/CD + Terraform** — focus (YAML build pipelines; multi-stage releases; automated testing; Terraform plan/apply/destroy; state & variables) → DE-3·A, DE-3·E
+**p3d Azure DevOps + CI/CD + Terraform** `[LATER]` — focus (YAML build pipelines; multi-stage releases; automated testing; Terraform plan/apply/destroy; state & variables) → DE-3·A, DE-3·E
 - [ ] Build a multi-stage CI/CD pipeline for a data project → DE-3·E
 - [ ] Provision a resource group + storage account with Terraform → DE-3·A
 - [ ] Explain plan vs apply vs state → DE-3·A
 
-**p3e Azure Security (Key Vault, RBAC)** — focus (secrets/keys/certificates; Azure AD & RBAC; management vs data plane; audit logging) → DE-3·B, DE-3 cost/audit ticket
+**p3e Azure Security (Key Vault, RBAC)** `[LATER (REQ-NOW if DIAG-04 picks Azure)]` — focus (secrets/keys/certificates; Azure AD & RBAC; management vs data plane; audit logging) → DE-3·B, DE-3 cost/audit ticket
 - [ ] Wire Key Vault secrets into an ADF pipeline → DE-3·B
 - [ ] Explain management plane vs data plane access → DE-3·B
 
-**p4a PySpark Fundamentals** — focus (SparkSession; schemas; transformations vs actions; aggregations & joins; UDFs; sources & sinks) → DE-3 Ping
+**p4a PySpark Fundamentals** `[REQ-NOW · S1]` — focus (SparkSession; schemas; transformations vs actions; aggregations & joins; UDFs; sources & sinks) → DE-3 Ping
 - [ ] Build a PySpark pipeline with joins and aggregations → DE-3 Ping
 - [ ] Write and test a UDF → DE-3 Ping
 - [ ] Read from and write to a data source → DE-3 Ping
 
-**p4b Spark Internals & Optimization** — focus (Catalyst & Tungsten; broadcast joins; caching/persistence; data skew; Spark UI; Structured Streaming; SCD Type 2; idempotent upserts) → DE-3 Ping, DE-4
+**p4b Spark Internals & Optimization** `[REQ-NOW · S1, S6]` — focus (Catalyst & Tungsten; broadcast joins; caching/persistence; data skew; Spark UI; Structured Streaming; SCD Type 2; idempotent upserts) → DE-3 Ping, DE-4
 - [ ] Diagnose data skew from the Spark UI → DE-3 Ping (skew incident)
 - [ ] Fix a slow join with a broadcast join → DE-3 Ping (broadcast perf)
 - [ ] Explain driver/executor/task/partition/shuffle → DE-3 (Spark UI tour)
 - [ ] Implement SCD Type 2 in PySpark → DE-3 Ping (CDC MERGE)
 
-**p5 Databricks / Delta Lake / Lakehouse** — focus (clusters & jobs; Delta Lake & time travel; Unity Catalog; Auto Loader & incremental ingestion; schema evolution; ZORDER/liquid clustering; Delta Sharing) → DE-3·C
+**p5 Databricks / Delta Lake / Lakehouse** `[REQ-NOW · S1, S2]` — focus (clusters & jobs; Delta Lake & time travel; Unity Catalog; Auto Loader & incremental ingestion; schema evolution; ZORDER/liquid clustering; Delta Sharing) → DE-3·C
 - [ ] Build a medallion-architecture Delta pipeline → DE-3·C
 - [ ] Use Auto Loader for incremental ingestion → DE-3·C
 - [ ] Implement SCD Type 2 with Delta → DE-3·C
 - [ ] Explain Unity Catalog's role → DE-3·C
 - [ ] Use time travel and ZORDER → DE-3·C
 
-**p6 Data Modeling + Warehousing** — focus (star vs snowflake schema; fact & dimension tables; slowly changing dimensions; Kimball vs Data Vault vs OBT; loading patterns) → DE-2·A, DE-2·B
+**p6 Data Modeling + Warehousing** `[REQ-NOW · S1, S2]` — focus (star vs snowflake schema; fact & dimension tables; slowly changing dimensions; Kimball vs Data Vault vs OBT; loading patterns) → DE-2·A, DE-2·B
 - [ ] Define the grain before modeling a new table — every time → DE-2·A (grain first)
 - [ ] Design a star schema for a real dataset → DE-2·A
 - [ ] Implement a slowly changing dimension → DE-2·B (all SCD types)
 
-**p7 Snowflake** — focus (architecture & warehouses; loading & formats; clustering; time travel; streams & tasks) → DE-2·F
+**p7 Snowflake** `[LATER (unless postings demand it)]` — focus (architecture & warehouses; loading & formats; clustering; time travel; streams & tasks) → DE-2·F
 - [ ] Load data into Snowflake and model it dimensionally → DE-2·F
 - [ ] Explain clustering and time travel → DE-2·F
 - [ ] Set up a stream + task pipeline → DE-2·F
 
-**p8a dbt** — focus (models & sources; ref(); incremental models; tests & snapshots; macros; docs & lineage) → DE-2·C
+**p8a dbt** `[REQ-NOW · S1, S2]` — focus (models & sources; ref(); incremental models; tests & snapshots; macros; docs & lineage) → DE-2·C
 - [ ] Build a dbt project with sources, models, and tests → DE-2·C
 - [ ] Implement an incremental model → DE-2·C
 - [ ] Generate and read the lineage docs → DE-2·C
 
-**p8b Airflow** — focus (DAGs & dependencies; scheduling & retries; sensors & operators; XCom; backfills; idempotency) → DE-2·D
+**p8b Airflow** `[REQ-NOW · S1]` — focus (DAGs & dependencies; scheduling & retries; sensors & operators; XCom; backfills; idempotency) → DE-2·D
 - [ ] Build a DAG with retries and a sensor → DE-2·D
 - [ ] Run a backfill safely → DE-2·D
 - [ ] Explain idempotency in an orchestrated pipeline → DE-2·D
 
-**p8c Kafka** — focus (topics & partitions; offsets & consumer groups; ordering & retention; delivery semantics; replay) → DE-4
+**p8c Kafka** `[LATER · S6]` — focus (topics & partitions; offsets & consumer groups; ordering & retention; delivery semantics; replay) → DE-4
 - [ ] Build a producer/consumer pair → DE-4
 - [ ] Explain at-least-once vs exactly-once delivery → DE-4
 - [ ] Replay a topic from an earlier offset → DE-4
 
-**p9 Data Quality / Reliability / Observability** — focus (schema & null/uniqueness checks; freshness & volume anomalies; reconciliation & lineage; alerting & dead-letter patterns; data contracts) → DE-2·E
+**p9 Data Quality / Reliability / Observability** `[REQ-NOW · S1, S2]` — focus (schema & null/uniqueness checks; freshness & volume anomalies; reconciliation & lineage; alerting & dead-letter patterns; data contracts) → DE-2·E
 - [ ] Build a pipeline that fails 5 ways: source down, malformed record, schema change, duplicate data, downstream DB failure → DE-2·E (five-failure drill)
 - [ ] Recover the pipeline from each failure → DE-2·E
 - [ ] Add data-quality checks and alerting → DE-2·E
 
-**p10 System Design for Data Engineers** — focus (requirements & scale estimation; availability/reliability/scalability; caching & partitioning; messaging & consistency; iterative architecture refinement) → DE-SD, every project
+**p10 System Design for Data Engineers** `[LATER · JOB-SD]` — focus (requirements & scale estimation; availability/reliability/scalability; caching & partitioning; messaging & consistency; iterative architecture refinement) → DE-SD, every project
 - [ ] Clarify requirements & assumptions for an unfamiliar design problem → DE-SD
 - [ ] Estimate scale (back-of-envelope) → DE-SD
 - [ ] Choose storage/compute/communication components and defend them → DE-SD
 - [ ] Explain bottlenecks, failure modes, and what changes at 10x scale → DE-SD
 - [ ] Practice: batch ingestion, CDC pipeline, lakehouse, event-driven platform → DE-SD
 
-**p11 DSA / Interview Preparation** — focus (arrays/strings/hash maps; trees & graphs; binary search & intervals; heaps; basic DP) → Daily DSA from Stage 1 + DSA tie-in tickets (map §7)
+**p11 DSA / Interview Preparation** `[LATER (interview-driven) · JOB]` — focus (arrays/strings/hash maps; trees & graphs; binary search & intervals; heaps; basic DP) → Daily DSA from Stage 1 + DSA tie-in tickets (map §7)
 - [ ] Recognize the pattern behind a new problem quickly → daily timed practice
 - [ ] Write clean, bug-free Python under time pressure → DE-INT, BE-INT
 
-**p12 Portfolio — 5 Projects** — focus (Dubai Real Estate Lakehouse (ADF/Databricks/Delta); UAE Gov Open Data Pipeline (API ingestion); Property Feature Pipeline (PySpark/ML-ready); Multi-Source Warehouse (dimensional modeling); Streaming Transaction Monitor (Structured Streaming/Kafka)) → Five portfolio projects
+**p12 Portfolio — 5 Projects** `[REQ-NOW · all slices]` — focus (Dubai Real Estate Lakehouse (ADF/Databricks/Delta); UAE Gov Open Data Pipeline (API ingestion); Property Feature Pipeline (PySpark/ML-ready); Multi-Source Warehouse (dimensional modeling); Streaming Transaction Monitor (Structured Streaming/Kafka)) → Five portfolio projects
 - [ ] Project 1 — Dubai Real Estate Lakehouse shipped → DE-3
 - [ ] Project 2 — UAE Gov Open Data Pipeline shipped → DE-1 public part 2
 - [ ] Project 3 — Property Feature Pipeline shipped → DE-3·F
@@ -723,86 +762,179 @@ Generated from roadmap.html focus and checklist items. Every item has a home. Th
 - [ ] Project 5 — Streaming Transaction Monitor shipped → DE-4 public part 2
 - [ ] At least 1 strong Azure/Databricks project, 1 warehouse/Snowflake/dbt project, 1 streaming/stretch project → DE-3, DE-2·F, DE-4
 
-**p13 Production Engineering Add-ons (Git, Docker)** — focus (branching/rebasing/PRs; clean commits & tagging; Docker images/volumes/networks; Dockerfiles & Compose) → P0-02 to P0-05, P0-15, DE-1·G, BE-1·G
+**p13 Production Engineering Add-ons (Git, Docker)** `[REQ-NOW · S1, S5]` — focus (branching/rebasing/PRs; clean commits & tagging; Docker images/volumes/networks; Dockerfiles & Compose) → P0-02 to P0-05, P0-15, DE-1·G, BE-1·G
 - [ ] Use a clean branch/PR workflow on a real project → every project
 - [ ] Containerize a service with a Dockerfile and Compose → P0-15, BE-1·G
 
-**p14 Applied AI / ML Foundation** — focus (vectors/matrices/probability/gradients; linear & logistic regression, trees, ensembles; neural nets/backprop/optimizers; tokenization/embeddings/attention; serving/batching/latency basics) → ML-0, ML-5, AI-4
+**p14 Applied AI / ML Foundation** `[REQ-NOW · S3]` — focus (vectors/matrices/probability/gradients; linear & logistic regression, trees, ensembles; neural nets/backprop/optimizers; tokenization/embeddings/attention; serving/batching/latency basics) → ML-0, ML-5, AI-4
 - [ ] Implement a simple neural net forward+backward pass → ML-5 (NumPy backprop)
 - [ ] Explain attention and positional encoding → AI-4
 - [ ] Explain training vs inference for a transformer → AI-4, INF-4
 
-**p15 LLM Fundamentals** — focus (Hands-On Large Language Models; LLMs from Scratch (tokenization→generation); Chip Huyen — Designing ML Systems (serving/monitoring/drift)) → AI-1 to AI-4, ML-3
+**p15 LLM Fundamentals** `[REQ-NOW · S4]` — focus (Hands-On Large Language Models; LLMs from Scratch (tokenization→generation); Chip Huyen — Designing ML Systems (serving/monitoring/drift)) → AI-1 to AI-4, ML-3
 - [ ] Implement a minimal transformer block → AI-4
 - [ ] Explain RAG end to end → AI-2
 - [ ] Explain distribution shift and why it matters for serving → ML-3 (drift)
 
-**p15a Prompt Engineering, Behavior & Evaluation** — focus (task specification & few-shot; structured outputs & tool calling; eval sets & regression testing; prefix caching / prefill vs decode implications; prompt injection as an app-layer threat) → AI-1
+**p15a Prompt Engineering, Behavior & Evaluation** `[REQ-NOW · S4]` — focus (task specification & few-shot; structured outputs & tool calling; eval sets & regression testing; prefix caching / prefill vs decode implications; prompt injection as an app-layer threat) → AI-1
 - [ ] Build a benchmark: 20–50 tasks, compare prompt v1 vs v2 on quality/tokens/latency → AI-1
 - [ ] Measure TTFT and cost across prompt versions → AI-1
 - [ ] Validate structured output against a schema → AI-1
 
-**p15b MLOps / Production ML Bridge** — focus (experiment→train→evaluate→serve→monitor; versioning & reproducibility; batch vs online serving; warm/cold starts & request batching; drift & GPU/CPU utilization monitoring) → ML-3
+**p15b MLOps / Production ML Bridge** `[REQ-NOW · S3]` — focus (experiment→train→evaluate→serve→monitor; versioning & reproducibility; batch vs online serving; warm/cold starts & request batching; drift & GPU/CPU utilization monitoring) → ML-3
 - [ ] Package a model with reproducible config/versioning → ML-3
 - [ ] Stand up a serving endpoint with logging + monitoring → ML-3
 - [ ] Explain batch vs online inference trade-offs → ML-3 ADR
 
-**p15c Umar Jamil Deep-Dive Companion** — focus (transformer/attention from first principles; KV cache, GQA, RoPE, RMSNorm; FlashAttention derivation & Triton) → AI-4
+**p15c Umar Jamil Deep-Dive Companion** `[DEEP]` — focus (transformer/attention from first principles; KV cache, GQA, RoPE, RMSNorm; FlashAttention derivation & Triton) → AI-4
 - [ ] Reproduce a selected implementation from scratch → AI-4
 - [ ] Modify it and benchmark the change → AI-4
 - [ ] Explain the mechanism and its performance implication → AI-4
 
-**p16 Performance Engineering Fundamentals** — focus (p50/p95/p99 latency; throughput & utilization; memory bandwidth & cache hit rate; TTFT & inter-token latency; cost per request/token) → INF-1
+**p16 Performance Engineering Fundamentals** `[LATER · S6]` — focus (p50/p95/p99 latency; throughput & utilization; memory bandwidth & cache hit rate; TTFT & inter-token latency; cost per request/token) → INF-1
 - [ ] Run the 10-step performance loop on a real workload → INF-1
 - [ ] Change exactly one variable and explain the result → INF-1
 - [ ] Distinguish compute-bound vs memory-bound vs launch-bound → INF-1, INF-2
 
-**p17 C++ Foundation** — focus (references/pointers/RAII; STL & smart pointers; move semantics & templates; threads/mutexes/atomics) → INF-2·0
+**p17 C++ Foundation** `[DEEP]` — focus (references/pointers/RAII; STL & smart pointers; move semantics & templates; threads/mutexes/atomics) → INF-2·0
 - [ ] Write a small multithreaded C++ program with RAII and smart pointers → INF-2·0
 - [ ] Explain move semantics vs copy → INF-2·0
 
-**p18 GPU Fundamentals** — focus (SIMD/SIMT, warps, threads, blocks, grids; registers/shared/global memory; occupancy & kernel launch overhead; PCIe host/device transfer) → INF-2
+**p18 GPU Fundamentals** `[DEEP]` — focus (SIMD/SIMT, warps, threads, blocks, grids; registers/shared/global memory; occupancy & kernel launch overhead; PCIe host/device transfer) → INF-2
 - [ ] Explain the warp/block/grid hierarchy → INF-2
 - [ ] Explain why host↔device transfer can dominate a naive kernel's runtime → INF-2 (PCIe timing)
 
-**p19 CUDA** — focus (thread hierarchy & memory hierarchy; shared memory & coalesced access; streams & async execution; CUDA graphs & events) → INF-2
+**p19 CUDA** `[DEEP]` — focus (thread hierarchy & memory hierarchy; shared memory & coalesced access; streams & async execution; CUDA graphs & events) → INF-2
 - [ ] Build & benchmark: vector add, matmul, reduction, histogram, convolution → INF-2
 - [ ] Use streams for overlap → INF-2 (streams)
 - [ ] Use a CUDA graph and explain the win → INF-2 (CUDA graph)
 
-**p20 PyTorch Performance** — focus (pinned memory & async loading; no-grad inference; torch.compile; mixed precision & Tensor Cores; CUDA graphs in PyTorch) → INF-3
+**p20 PyTorch Performance** `[DEEP]` — focus (pinned memory & async loading; no-grad inference; torch.compile; mixed precision & Tensor Cores; CUDA graphs in PyTorch) → INF-3
 - [ ] Benchmark correctly: warm-up, sync, repeat for variance → INF-2, INF-3
 - [ ] Apply torch.compile and measure the delta → INF-3
 - [ ] Use mixed precision and measure the delta → INF-3
 
-**p21 Profiling** — focus (perf & flame graphs; py-spy/cProfile/line_profiler; PyTorch Profiler; Nsight Systems / Nsight Compute) → INF-1, INF-2, INF-3
+**p21 Profiling** `[DEEP (py-spy/cProfile rows LATER · S6)]` — focus (perf & flame graphs; py-spy/cProfile/line_profiler; PyTorch Profiler; Nsight Systems / Nsight Compute) → INF-1, INF-2, INF-3
 - [ ] Generate and read a flame graph → INF-1
 - [ ] Profile a Python hotspot with py-spy or cProfile → INF-1, DE-1·H
 - [ ] Profile a GPU kernel with Nsight Compute and explain occupancy → INF-2
 
-**p22 LLM Inference Internals** — focus (prefill (compute-bound) vs decode (bandwidth-bound); KV cache growth (layers/heads/dim/dtype); static vs dynamic vs continuous batching; FP16/BF16/FP8/INT8/INT4, GPTQ/AWQ; FlashAttention & PagedAttention concepts) → INF-4
+**p22 LLM Inference Internals** `[DEEP]` — focus (prefill (compute-bound) vs decode (bandwidth-bound); KV cache growth (layers/heads/dim/dtype); static vs dynamic vs continuous batching; FP16/BF16/FP8/INT8/INT4, GPTQ/AWQ; FlashAttention & PagedAttention concepts) → INF-4
 - [ ] Calculate KV-cache memory for a given model/sequence-length/batch size → INF-4 (KV drill)
 - [ ] Explain why decode is memory-bandwidth bound → INF-4
 - [ ] Explain the quantization trade-off (memory/latency/cost vs accuracy risk) → INF-4
 - [ ] Explain FlashAttention and PagedAttention conceptually → INF-4
 
-**p23 vLLM** — focus (continuous batching & chunked prefill; prefix caching; tensor/pipeline/data/expert/context parallelism; OpenAI-compatible serving) → INF-4, INF-4·P
+**p23 vLLM** `[DEEP]` — focus (continuous batching & chunked prefill; prefix caching; tensor/pipeline/data/expert/context parallelism; OpenAI-compatible serving) → INF-4, INF-4·P
 - [ ] Serve an open-weight model with vLLM → INF-4
 - [ ] Benchmark across batch sizes, quantization, context length, concurrency → INF-4
 - [ ] Record TTFT, p50/p95/p99, tokens/sec, GPU memory & utilization, cost/request → INF-4
 
-**p24 TensorRT** — focus (ONNX → engine building; FP16/BF16/FP8/INT8; layer fusion & Tensor Cores; multi-streaming & timing cache) → INF-4·T
+**p24 TensorRT** `[DEEP]` — focus (ONNX → engine building; FP16/BF16/FP8/INT8; layer fusion & Tensor Cores; multi-streaming & timing cache) → INF-4·T
 - [ ] Build a TensorRT engine from ONNX → INF-4·T
 - [ ] Benchmark baseline → optimized, profile, identify bottleneck, re-benchmark → INF-4·T
 
-**p25 Triton / Custom Kernels** — focus (memory access & tiling; reductions & fusion; GEMM & attention kernels; launch configuration) → INF-2 (Triton)
+**p25 Triton / Custom Kernels** `[DEEP]` — focus (memory access & tiling; reductions & fusion; GEMM & attention kernels; launch configuration) → INF-2 (Triton)
 - [ ] Write a custom Triton kernel and benchmark it against the PyTorch baseline → INF-2
 
-**p26 Ajay Shenoy — Advanced AI Engineering** — focus (GPTQ/AWQ/FP8/INT4; FlashAttention/PagedAttention; vLLM/SGLang/TensorRT/Triton; speculative decoding; MoE/SSMs/Mamba; Kubernetes + GPU serving) → INF-4, INF-4·P, INF-5 (resource sections at step 4e)
+**p26 Ajay Shenoy — Advanced AI Engineering** `[DEEP]` — focus (GPTQ/AWQ/FP8/INT4; FlashAttention/PagedAttention; vLLM/SGLang/TensorRT/Triton; speculative decoding; MoE/SSMs/Mamba; Kubernetes + GPU serving) → INF-4, INF-4·P, INF-5 (resource sections at step 4e)
 - [ ] Complete relevant modules after the core inference-internals foundation is solid → INF-4, INF-5
 
-**p35 Capstone — Production LLM Inference Performance Lab** — focus (Layer: API → service → vLLM model → load gen → metrics; Optimize: batch size, concurrency, context length, quantization, prefix caching, CUDA graphs; Compare: naive PyTorch → optimized PyTorch → vLLM → quantized vLLM → TensorRT) → INF-5
+**p35 Capstone — Production LLM Inference Performance Lab** `[DEEP]` — focus (Layer: API → service → vLLM model → load gen → metrics; Optimize: batch size, concurrency, context length, quantization, prefix caching, CUDA graphs; Compare: naive PyTorch → optimized PyTorch → vLLM → quantized vLLM → TensorRT) → INF-5
 - [ ] Stand up all 5 layers (API, service, model, load gen, metrics) → INF-5
 - [ ] Run the optimization sweep and record TTFT/p50/p95/p99/tokens-per-sec/GPU util → INF-5
 - [ ] Publish a repo: architecture, methodology, baseline, experiments, graphs, profiler screenshots, bottleneck analysis, results, cost analysis, lessons learned → INF-5
 
+**p40 AWS core** `[REQ-NOW · S1]` — focus (S3, IAM users/roles/policies, least privilege, RDS/MySQL, networking basics: VPC/security groups, cost) → S1-09, S1 v2 (MySQL sink)
+- [ ] Create an S3 bucket and land files with a least-privilege IAM role → S1-09
+- [ ] Load into MySQL on RDS (or local MySQL) idempotently → S1 v2
+- [ ] Explain IAM user vs role vs policy → S1-09
+
+**p41 Semantic layer, BI and governance** `[REQ-NOW · S2]` — focus (metric views / dbt semantic layer, ontology and glossary, supervision tiers, lineage, access control, Power BI/Tableau semantic concepts) → S2
+- [ ] Define 5 metrics once and query them consistently → S2-03
+- [ ] Write a glossary that settles Sales vs Finance revenue → S2-01
+- [ ] Tag assets Core / Curated / Wild West with a promotion check → S2-04
+- [ ] Restrict PII with roles → S2-07
+
+**p42 Production ML (MLflow, leakage, time-based splits, batch scoring, monitoring)** `[REQ-NOW · S3]` → S3
+- [ ] Prove no feature leaks past the cutoff → S3-03
+- [ ] Track and register models in MLflow → S3-05
+- [ ] Schedule batch scoring and a drift report → S3-06, S3-07
+
+**p43 AI on data (text-to-SQL, RAG, MCP, agents, evals)** `[REQ-NOW · S4]` → S4
+- [ ] Build a known-answer eval set and gate CI on it → S4-01, S4-07
+- [ ] Ship a multi-turn text-to-SQL agent over curated context → S4-02, S4-03
+- [ ] Ship an MCP server with least-privilege tools → S4-04
+
+**p44 Data app serving (FastAPI, auth, Docker, deploy)** `[REQ-NOW · S5]` → S5
+- [ ] REST API with validation, pagination and idempotency keys → S5-02
+- [ ] OIDC/JWT auth with roles → S5-04
+- [ ] Prevent double booking under concurrency → S5-05
+- [ ] Deploy with CI/CD and roll back once → S5-07
+
+**p45 CDC, streaming, Spark tuning, platform cost, Kubernetes awareness** `[LATER · S6]` → S6
+- [ ] CDC demo into bronze → S6-01
+- [ ] Before/after Spark tuning numbers → S6-02
+- [ ] Platform cost note with 3 savings → S6-07
+
+**p46 Career track (job loop, FDE skills)** `[REQ-NOW · JOB]` → JOB, PUB
+- [ ] UAE market analysis → DIAG-04
+- [ ] Resume and LinkedIn from real slices → JOB-RES
+- [ ] 3 applications per week, 1 post per week → JOB-x, PUB-x
+- [ ] Monthly mock passed at hireable mid-level → JOB-MOCK
+
+
+---
+
+## 34. AWS core — `REQ-NOW` (S1)
+- [W] S3: buckets, prefixes, storage classes, lifecycle — S1-09
+- [S] IAM: users vs roles vs policies, least privilege, no root keys, access keys vs roles — S1-09
+- [W] RDS/MySQL: managed MySQL, connections, backups; MySQL vs PostgreSQL differences that matter for loads — S1 v2
+- [A] VPC, subnets, security groups (enough to connect to RDS) — S1 v2
+- [A] Glue, Athena, Redshift, Lambda (when to use each) — DIAG-04 decides depth
+
+## 35. Semantic/metric layer and BI — `REQ-NOW` (S2, spike layer)
+- [S] Metric definitions as code (Databricks metric views or dbt semantic models / MetricFlow) — S2-03
+- [S] Measures vs dimensions, additive vs non-additive metrics, ratio metrics done right — S2-03
+- [W] Power BI semantic model concepts and basic DAX (measures, filter context) — S2-06
+- [W] Tableau on a governed source (published data source, extracts vs live) — S2-06
+- [S] Dashboard reconciliation to a Core metric — S2-06
+
+## 36. Governance, lineage, access — `REQ-NOW` (S2)
+- [S] Lineage (dbt docs, Unity Catalog concepts) — S2-07
+- [S] Role-based grants, column masking for PII, row-level security (W, S2 v2) — S2-07
+- [W] Data contracts and owners; change process for metric definitions — S2 v2
+- [S] Documentation a stranger can use (column descriptions, model docs) — S2-07
+
+## 37. Data intelligence engineering (MotherDuck role lens) — `REQ-NOW` (S2, S4, spike layers)
+- [S] Clean data model first: model so the meaning is obvious; context only for what the model cannot show — S2-02
+- [S] Ontology and business glossary (ARR, GRR/NRR, utilization; Sales vs Finance revenue) — S2-01
+- [S] Agent context curation: joinable fields, the real table, gotchas — S2-05, S4-03
+- [S] Evals as system tests: known-answer questions, rerun on every change, drift detection — S4-01, S4-07, S4 v2
+- [S] Supervision proportional to blast radius: Core / Curated / Wild West, promotion checks — S2-04
+- [W] Conducting agents: spec + tests first, agent writes, human reviews and signs off — 🤖 tickets in v2
+- [W] Where agents go wrong on SQL and pipelines (failure catalog) — S4 v2
+- [W] Self-service adoption metrics (who asks, follow-ups, answer accuracy) — S2 v2
+- [S] Accountability: signing off a number, reconciliation evidence — S2-06, S3-01
+
+## 38. Forward-deployed and stakeholder skills — `REQ-NOW` (all)
+- [S] Turning a vague stakeholder ask into a ticket with AC and a smaller v1 — persona tickets
+- [S] Plain-language updates, saying no with options, reporting trade-offs — every slice write-up
+- [W] Discovery: ask 5 clarifying questions before building — L3+ tickets
+- [W] Demo a working slice to a non-technical audience in 5 minutes — /publish
+
+## 39. Platform cost (FinOps basics) — `REQ-NOW (partial)` (S1, S4, S6)
+- [W] Cost drivers: cluster/warehouse size and uptime, storage, egress, tokens — S6-07
+- [W] Cost per run / per answer measured and reported — S4-03, S6-05
+- [A] Budgets, alerts, auto-termination — S6-07
+
+## 40. Job search — `REQ-NOW` (JOB)
+- [S] Market analysis from postings (skill counts) — DIAG-04
+- [S] Honest resume and LinkedIn from real slices — JOB-RES
+- [S] STAR stories from my incidents and transfers — JOB-MOCK
+- [S] Timed SQL and Python under interview conditions — /apply
+- [W] DE/AE system design interviews (from my slices) — JOB-SD
+
+## 41. Learning habits (AI-use, retrieval, spacing) — `REQ-NOW`
+- [S] Attempt first; AI as reviewer; explain every line — every ticket
+- [S] Blank-file rebuild 2 days after shipping — REPS.md

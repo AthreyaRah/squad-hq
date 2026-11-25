@@ -1,11 +1,11 @@
 project_name: "Squad HQ"
 default_status: "Backlog"
 statuses: ["Backlog", "Ready", "In Progress", "In Review", "Changes Requested", "Verifying", "Done", "Blocked"]
-labels: ["stage-0", "stage-1", "stage-2", "stage-3", "stage-4", "stage-5", "stage-6", "python", "sql", "testing", "git", "docker", "http", "postgres", "data-modeling", "orchestration", "streaming", "spark", "cloud", "backend", "ml", "llm", "frontend", "k8s", "gpu", "planted-bug", "chaos", "escaped-defect", "stakeholder-change", "fleet", "mastery-gate", "field-report"]
+labels: ["slice-1", "slice-2", "slice-3", "slice-4", "slice-5", "slice-6", "v1", "v2", "v3", "transfer", "job-search", "publish", "diagnostic", "deep-track", "agent-built", "aws", "semantic-layer", "governance", "ai-on-data", "stage-0", "stage-1", "stage-2", "stage-3", "stage-4", "stage-5", "stage-6", "python", "sql", "testing", "git", "docker", "http", "postgres", "data-modeling", "orchestration", "streaming", "spark", "cloud", "backend", "ml", "llm", "frontend", "k8s", "gpu", "planted-bug", "chaos", "escaped-defect", "stakeholder-change", "fleet", "mastery-gate", "field-report"]
 priorities: ["P0", "P1", "P2", "P3"]
 types: ["feature", "bug", "incident", "chore", "spike", "tech-debt", "review", "design", "perf", "security", "docs", "drill"]
-projects: ["P0", "DE-1", "DE-2", "DE-3", "FAB-1", "DE-4", "DE-SD", "DE-INT", "DOG-1", "BE-1", "BE-2", "BE-INT", "DOG-2", "ML-0", "ML-1", "ML-2", "ML-3", "ML-4", "ML-5", "ML-6", "ML-INT", "DOG-3", "AI-1", "AI-2", "AI-3", "AI-4", "AI-INT", "DOG-4", "FS-1", "FS-2", "FS-3", "FS-4", "DOG-5", "INF-1", "INF-2", "INF-3", "INF-4", "INF-5", "DOG-6", "FLEET"]
-definition_of_done: ["PR merged after mentor APPROVED", "CI green (once the repo has CI)", "Released and verified in production (RDS_MODEL.md section 6)", "Explain-back and understanding check passed", "Concept Log and PROGRESS.md updated"]
+projects: ["S1", "S2", "S3", "S4", "S5", "S6", "DIAG", "JOB", "PUB", "P0", "DE-1", "DE-2", "DE-3", "FAB-1", "DE-4", "DE-SD", "DE-INT", "DOG-1", "BE-1", "BE-2", "BE-INT", "DOG-2", "ML-0", "ML-1", "ML-2", "ML-3", "ML-4", "ML-5", "ML-6", "ML-INT", "DOG-3", "AI-1", "AI-2", "AI-3", "AI-4", "AI-INT", "DOG-4", "FS-1", "FS-2", "FS-3", "FS-4", "DOG-5", "INF-1", "INF-2", "INF-3", "INF-4", "INF-5", "DOG-6", "FLEET"]
+definition_of_done: ["PR merged after mentor APPROVED", "CI green (once the repo has CI)", "Released and verified per slice (RDS_MODEL.md section 6)", "Explain-back and understanding check passed", "Findings added to REPS.md; PROGRESS.md updated"]
 default_assignee: ["@rahul"]
 date_format: yyyy-mm-dd
 max_column_width: 20
