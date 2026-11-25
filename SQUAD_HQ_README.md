@@ -1,36 +1,59 @@
-# Squad HQ kit — RDS-style ticket workflow for Claude Code
+# Squad HQ
 
-Drop these files into your Claude Code workspace root (the folder with CLAUDE.md, PROGRESS.md, curriculum/).
+My learning workspace, run like a real data team. Claude Code is the tech lead. I own the tickets.
+Goal: hireable mid-level DE/AE in the UAE within about 2 months, with public proof of work. Long term: a full-stack data and AI engineer (the "data intelligence engineer" role).
 
-## What is in the kit
+## What each file is
 
-| Path | What it is |
-|---|---|
-| `CLAUDE.md` | Your CLAUDE.md, updated: clean-slate baseline (CX BI analyst; syntax-aware functional Python; SQL basics with CTEs and some window functions), JIT depth rule replacing the teaching ladder and retention cycles, ticket-driven Stage 0, CLEAN START replacing the migration section, and the RDS ticket model wired in. Back up your old one first. |
-| `PROGRESS.md` | Fresh progress log: not started, with your baseline. |
-| `docs/operating-model/RDS_MODEL.md` | The work system: tracker, statuses, review gates, "production" per stage, fleet and on-call, chaos, teammate PRs, legacy code, personas, levels, metrics, dogfood thread. Imported into CLAUDE.md. |
-| `docs/operating-model/TICKET_TEMPLATES.md` | Body templates for every ticket type, plus postmortem, standup, extension request, promotion packet. |
-| `docs/operating-model/TICKET_CATALOG.md` | The skeleton backlog from Stage 0 to Stage 6, with mastery-gate tickets and field reports. Symptoms only. |
-| `docs/operating-model/COVERAGE_MAP.md` | The completeness contract: every concept across 32 domains with a depth tag (Solid / Working / Aware) and the epic that teaches it. Checked at sprint planning and every stage audit. |
-| `docs/operating-model/FLEET.md` | Registry of systems you run in production. Starts empty. |
-| `.mentor/incident-plan.md` | Causes of every planted bug and incident. **Do not read.** It is git-ignored. |
-| `backlog/config.yml` | Tracker config: 8 statuses, 12 ticket types, P0–P3, all project IDs. |
-| `tools/bootstrap_tracker.sh` | Initializes the tracker, creates sprints S01–S02, seeds all 26 Stage 0 tickets from zero (TKT-001 In Progress). Tested with Backlog.md 1.55. |
-| `.claude/commands/*.md` | Slash commands: /standup, /next, /submit, /ship, /page, /pr-review, /retro. |
-| `.github/pull_request_template.md` | Copy into each project repo. |
-| `.gitignore` | For the workspace repo: ignores `projects/`, `.mentor/`, secrets. |
+| Path | What it is | When it is read |
+|---|---|---|
+| `CLAUDE.md` | Who I am, the bar, the 6 slices, how the mentor teaches, the rules | Every session (auto) |
+| `docs/operating-model/RDS_MODEL.md` | The work system: tracker, statuses, production per slice, personas, metrics, commands, content stack | Every session (imported) |
+| `docs/operating-model/TICKET_CATALOG.md` | Slice backlog: DIAG, S1–S6 (v1 tickets, v2/v3 ideas, transfer), JOB/PUB, Deep track | Sprint planning, /next |
+| `docs/operating-model/COVERAGE_MAP.md` | Concepts with depth tags and REQ-NOW / JIT / LATER / DEEP tags | Sprint planning, monthly re-grade |
+| `docs/operating-model/TICKET_TEMPLATES.md` | Ticket bodies, the definition of done, transfer / job-search / publish / diagnostic templates | When a ticket is written |
+| `docs/operating-model/FLEET.md` | Systems I run on a schedule (S1 pipeline first) | /ship, /page |
+| `PROGRESS.md` | CURRENT status (8 lines) + HISTORY | Start and end of every session |
+| `DEPTH_GRID.md` | My level per layer (L1–L4), spike layers, known list, evidence | /diag, monthly re-grade |
+| `REPS.md` | Spaced-repetition queue fed by reviews and mistakes | /reps, /standup |
+| `METRICS.md` | Weekly numbers: tickets, build ratio, streak, findings, job loop | Weekly retro |
+| `PORTFOLIO.md` | Per slice: repo, problem, stack, numbers, transfer result; STAR stories | /publish, /apply |
+| `backlog/` | The tracker (Backlog.md). `backlog/archive/` holds old tickets | Always |
+| `curriculum/` | `roadmap.html` and `resource-library.xlsx`: a reference library, never a syllabus | Only when a ticket stalls |
+| `projects/<name>/` | One public repo per slice (git-ignored here) | Build time |
+| `tools/` | `metrics.py`, mocks, chaos scripts | As needed |
+| `.claude/commands/` | Slash commands | — |
+| `archive/` | The old Stage 0–6 plan and the old kit. **Never re-run `archive/old-kit/*.sh`** | Never |
 
-## Setup (clean start)
+## Daily loop (about 2.5 h; Tuesday is a light day)
 
-1. Back up: `cp CLAUDE.md CLAUDE.md.bak`. If you have an old PROGRESS.md, rename it `PROGRESS.pre-reset.md`.
-2. Copy the kit contents into the workspace root (this includes a fresh `PROGRESS.md` that says "not started").
-3. Open Claude Code in the workspace and type: `Start the clean start: RDS_MODEL.md section 16.`
-4. Session 1 is ticket TKT-001: the mentor teaches the terminal and installs (package manager, Git, Node.js, Backlog.md) from zero, one at a time. At the end you run `bash tools/bootstrap_tracker.sh`, which creates the tracker, sprints S01–S02, and all 26 Stage 0 tickets.
-5. From then on, the board drives everything.
+```
+/standup → /reps (due drills, 5–10 min each)
+        → /next → I attempt first (time box) → mentor teaches only the gap
+        → PR → /submit TKT-x → fix → merge → /ship TKT-x
+        → LOG
+```
+Tuesday: one /reps drill only. It counts as a kept day.
 
-## Daily loop
+## Weekly loop
 
-`/standup` → `/next` → learn only what this ticket needs → build → PR → `/submit TKT-xxx` → fix → merge → `/ship TKT-xxx` → `/standup` next day.
-Incidents arrive on their own (or `/page`). Sprint ends with `/retro`.
+- Mon, Wed, Thu: build (~2.5 h each).
+- Fri, Sat: longer build blocks + the job loop (~5 h each).
+- Sun: review day — /retro (5 retrieval questions, METRICS.md, one change), /publish, blank-file rebuilds.
+- One public post or repo update every week.
+- Every 2 weeks: sprint retro and planning. Every month: depth-grid re-grade and a mock interview with Khalid (hiring manager persona).
 
-Board: `backlog board` in the terminal, or `backlog browser` for the web board at http://127.0.0.1:6420.
+## Job loop (from week 3)
+
+`/apply` each week: 3 applications (I send them), 1 resume or LinkedIn tweak, 1 timed SQL/Python set.
+`/publish` each week: README pass, write-up, post draft in my voice (I post it).
+Week 1: DIAG-04 picks the primary cloud and tools from 10–15 real UAE postings.
+
+## Rules that matter most
+
+- Attempt first. AI is a reviewer and tutor, not the author. Never keep code I cannot explain.
+- Ship a v1 even when I do not feel ready. Compare only with my previous version.
+- Real work data never enters this workspace. Counts and outcomes only.
+- The mentor never commits, pushes, applies or posts for me.
+
+Board: `backlog board` (terminal) or `backlog browser` → http://127.0.0.1:6420.
