@@ -16,6 +16,9 @@ Drill types: SQL (write a query), CODE (a function from a blank file), EXPLAIN (
 | R006 | ROWS vs RANGE: predict running totals on a table with tied ORDER BY values, then say which frame is the default with ORDER BY and when it bites | EXPLAIN | TKT-027 P3 gap | 2026-11-26 | 2026-11-28 | +2d | 0 |
 | R007 | Prove a dedup returned one row per key: write the count check (count(*) vs count(DISTINCT key)), and say what ROW_NUMBER, RANK and DENSE_RANK return on a full tie | SQL | TKT-027 P4 | 2026-11-26 | 2026-11-28 | +2d | 0 |
 | R008 | Read a 3-table EXPLAIN plan bottom-up: name each box, say build vs probe side of each HASH_JOIN, point to the step that scales with the biggest table | EXPLAIN | TKT-027 P5 gap | 2026-11-26 | 2026-11-28 | +2d | 0 |
+| R009 | Group-and-sum where every key must appear: total billable hours per consultant from a list of dicts, including a consultant with 0 billable hours. From a blank file, two ways (`dict.get` and an `if key not in` check first) | CODE | TKT-028 P2 | 2026-11-26 | 2026-11-28 | +2d | 0 |
+| R010 | `raise` vs `return` an exception: write `parse_hours(value)` that raises ValueError naming the bad value, then call it inside try/except from another function. Say what the caller gets if you `return ValueError(...)` instead | CODE | TKT-028 P3 | 2026-11-26 | 2026-11-28 | +2d | 0 |
+| R011 | Clean rows without changing the caller's data: build new dicts instead of editing `row[...]` in place. Show the original list before and after, and say why in-place edits bite in a pipeline | CODE | TKT-028 P3 | 2026-11-26 | 2026-11-28 | +2d | 0 |
 
 ## Retired
 

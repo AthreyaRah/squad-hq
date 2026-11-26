@@ -5,7 +5,7 @@ status: Backlog
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:02:00Z'
-updated_date: '2026-11-25T17:25:00Z'
+updated_date: '2026-11-26T17:30:00Z'
 labels:
   - slice-1
   - v1
@@ -15,6 +15,7 @@ milestone: m-2
 dependencies:
   - TKT-032
   - TKT-033
+  - TKT-055
 priority: p1
 type: feature
 project: S1
@@ -64,6 +65,14 @@ created: 2026-11-25T17:25:00Z
 ---
 
 Interview-coverage pass (2026-11-25): added AC so this ticket covers an interview-critical concept.
+
+---
+
+created: 2026-11-26T17:30:00Z
+
+---
+
+Now also depends on TKT-055: DIAG-02 showed file I/O is new.
 
 ---
 <!-- COMMENTS:END -->
