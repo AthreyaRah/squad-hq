@@ -5,13 +5,13 @@ Status: started 2026-10-25 (session 1)
 ## CURRENT
 
 ```
-DATE: 2026-11-25
-SLICE: reconfigure (Stage 0 plan replaced by slices S1–S6) — BEHIND old plan by ~3 weeks; new plan starts S03
-TICKET: none In Progress — next: /diag → TKT-027 (DIAG-01 SQL test-out)
-SPRINT: S03 2026-11-23 — planned 14 (~36 h) / done 0; S1-04..11, S1-T in Backlog for S04
+DATE: 2026-11-26
+SLICE: diagnostic week (S1 v1 starts after DIAG) — BEHIND old plan by ~3 weeks; new plan on track
+TICKET: TKT-027 (Done) — next: /diag → TKT-028 (DIAG-02 Python test-out)
+SPRINT: S03 2026-11-23 — committed 14 / done 1
 JOB LOOP (week): applications 0/3 (starts week 3) · post 0/1 · timed set n/a
-REPS: due 0 today (3 due 2026-11-27) · streak 0 days
-BUILD RATIO: n/a (setup session) · hours this week: ?
+REPS: due 0 today (8 due 2026-11-27/28) · streak 1 day
+BUILD RATIO: ~75% (probes) · hours this week: ?
 LATER LIST: Homebrew, Node.js, gh details (when a ticket needs them); Docker install (S1-07); S5 v2 React + TypeScript UI (only if a job needs it)
 ```
 
@@ -30,3 +30,4 @@ LATER LIST: Homebrew, Node.js, gh details (when a ticket needs them); Docker ins
 - 2026-10-25: LOG at end of session 1. S01: 3 of 26 Stage 0 tickets Done.
 - 2026-11-25: Reconfigure. Stage 0–6 plan archived (archive/old-plan). New model: 6 slices, public twin + transfer, depth grid, job loop, REPS. TKT-004..026 archived; S03 opened. Spikes: modeling + semantic layer, AI on data.
 - 2026-11-25: Interview-coverage pass (2 passes). Added S1-10 MERGE/backfill, S1-11 Spark perf, S2-02b SCD2, S2-02c finance SQL, S2-09 stats, JOB-TARGETS/STAR/LOG/OUT/SD/DSA/NEG, mock #1. Pay bands set (private/compensation.md). Self-serve 2x rule (≤30 min/ticket after attempt).
+- 2026-11-26: DIAG-01 (TKT-027) Done. SQL baseline L2: fan-out, windows, dedup pass; anti-join partial (looked up), plan reading partial. Gaps: ROWS vs RANGE, EXPLAIN → R004-R008, TKT-046. Mock dataset tools/mocks/diag/.

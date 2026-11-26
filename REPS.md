@@ -11,6 +11,11 @@ Drill types: SQL (write a query), CODE (a function from a blank file), EXPLAIN (
 | R001 | Home folder vs root folder: what `~` and `/` mean, and where your workspace lives | EXPLAIN | TKT-001 weak spot | 2026-11-25 | 2026-11-27 | +2d | 0 |
 | R002 | Why Homebrew tools live in `/opt/homebrew/bin`, not `/usr/bin`, and how `which` + PATH decide which one runs | EXPLAIN | TKT-001 weak spot | 2026-11-25 | 2026-11-27 | +2d | 0 |
 | R003 | Fix the last commit message (typo) before it is pushed, and say why you must not do it after a push | CMD | TKT-002 weak spot | 2026-11-25 | 2026-11-27 | +2d | 0 |
+| R004 | Customers with no orders, 3 ways from a blank file (NOT IN null-safe, NOT EXISTS, LEFT JOIN … IS NULL), with names | SQL | TKT-027 P2 (syntax looked up) | 2026-11-26 | 2026-11-28 | +2d | 0 |
+| R005 | Why `x NOT IN (1, 2, NULL)` returns no rows: three-valued logic (TRUE/FALSE/UNKNOWN) and which WHERE results keep a row | EXPLAIN | TKT-027 P2 | 2026-11-26 | 2026-11-28 | +2d | 0 |
+| R006 | ROWS vs RANGE: predict running totals on a table with tied ORDER BY values, then say which frame is the default with ORDER BY and when it bites | EXPLAIN | TKT-027 P3 gap | 2026-11-26 | 2026-11-28 | +2d | 0 |
+| R007 | Prove a dedup returned one row per key: write the count check (count(*) vs count(DISTINCT key)), and say what ROW_NUMBER, RANK and DENSE_RANK return on a full tie | SQL | TKT-027 P4 | 2026-11-26 | 2026-11-28 | +2d | 0 |
+| R008 | Read a 3-table EXPLAIN plan bottom-up: name each box, say build vs probe side of each HASH_JOIN, point to the step that scales with the biggest table | EXPLAIN | TKT-027 P5 gap | 2026-11-26 | 2026-11-28 | +2d | 0 |
 
 ## Retired
 

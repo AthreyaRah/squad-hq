@@ -1,0 +1,9 @@
+[project]
+name = "diag-mocks"
+version = "0.1.0"
+description = "Synthetic DuckDB dataset for the DIAG-01 SQL test-out"
+requires-python = ">=3.11"
+dependencies = ["duckdb==1.1.3"]
+
+[tool.uv]
+package = false

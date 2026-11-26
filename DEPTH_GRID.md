@@ -12,7 +12,7 @@ Baseline is set by the diagnostic (DIAG-05). "?" = not graded yet.
 
 | Layer | Slice | Now | Target | Evidence |
 |---|---|---|---|---|
-| SQL | S1, S2 | ? | L2 (L3 for interviews) | |
+| SQL | S1, S2 | L2 | L2 (L3 for interviews) | TKT-027 (DIAG-01): fan-out, windows, dedup solved alone; plans + frames not yet |
 | Python engineering | S1 | ? | L2 | |
 | Git, CI, Docker | S1, S5 | ? | L2 | TKT-001..003 (terminal, commit, push) |
 | Spark + lakehouse (PySpark, Delta) | S1, S6 | ? | L2 | |
@@ -27,9 +27,12 @@ Baseline is set by the diagnostic (DIAG-05). "?" = not graded yet.
 
 ## Known list (filled by `/diag`; what I can already do without help)
 
-- (empty until DIAG-01..03)
+- SQL (TKT-027, 2026-11-26): fan-out-safe aggregation (pre-aggregate to the join grain in a CTE); CTE chains; monthly grouping with date_trunc; running total with SUM() OVER; RANK() OVER; latest-row-per-key with ROW_NUMBER + tie-break and QUALIFY; debugs an empty result by running and inspecting.
+- SQL SHAKY (in REPS): anti-join syntax from memory (R004); NULL three-valued logic / NOT IN trap (R005); proving one row per key, ROW_NUMBER vs RANK on ties (R007).
+- SQL GAP: window frames ROWS vs RANGE (R006); reading a query plan (R008, then TKT-046).
 
 ## Change log
 
 | Date | Layer | Old → new | Evidence |
 |---|---|---|---|
+| 2026-11-26 | SQL | ? → L2 | TKT-027 (5 probes: 3 pass, 2 partial) |

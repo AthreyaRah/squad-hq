@@ -13,3 +13,5 @@ __pycache__/
 .DS_Store
 # Personal compensation and other private notes stay local.
 private/
+# Generated mock databases (rebuild with uv run generate.py)
+*.duckdb
