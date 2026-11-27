@@ -28,6 +28,8 @@ Status: none yet. He is building it from scratch (2026-11-27). `/basic-screen` g
 
 ## Ping projects (his brief, 2026-11-27)
 
+2026-11-27: he will rebuild everything AI did (P3, P5) himself before defending it. Until a `/project-grill` passes on the rebuilt version, the claim limits below stand.
+
 Claim limits are the mentor's first read, before any grill. `/project-grill` replaces each one with a tested "defensible claim".
 
 | # | Project | Status | His part vs AI vs team | Claim limit (before grilling) | Defensible claim (after grill) | Last grilled |
