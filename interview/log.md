@@ -1,6 +1,6 @@
-# Graded sessions
+# Session log
 
-One entry per session. Scores 0-4 with evidence. No real work data.
+One row per chat. Scores 0-4 with evidence. No real work data.
 
-| Date | Role | Round | Market | Min | Scores (dim: score — evidence) | Verdict | Top fixes |
-|---|---|---|---|---|---|---|---|
+| Date | Command | Role / market | Scores (dimension: score — evidence) | Verdict | Top fixes |
+|---|---|---|---|---|---|

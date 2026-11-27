@@ -1,13 +1,15 @@
 ---
 name: explain
-description: Use whenever the user asks to explain, walk through, or help them understand anything (code, a flow, a bug, a concept, an architecture, a model output). Picks the clearest output format and writes in short plain sentences. Teaches only the gap after an attempt.
+description: "/explain <topic>: teach a topic he names in plain language (fresh chat only). Also used for simple explanations inside the /assign-tasks gap loop."
 ---
 
 # Explain
 
-Goal: the user understands fast. Pick the lightest format that works, then escalate only when it helps.
+**Fresh-chat check, first (when run as `/explain`).** If this conversation has any message from him before `/explain`, reply only: "Start a new chat and run `/explain <topic>` there." Then stop. The one exception: the gap loop inside an `/assign-tasks` chat may use this skill's writing rules to explain a gap simply.
 
-**Never lecture before the user attempts.** On a ticket, the user tries first; then teach only the gap the attempt shows. A direct question ("what is X?") gets a direct answer.
+Goal: he understands the topic he named, fast. Pick the lightest format that works, then escalate only when it helps.
+
+**In an `/explain` chat:** teach the topic he names. Ask one question first: what does he already know about it, or where did he meet it at work? Then teach from that point. End with 2–3 interview-style check questions; he answers, and you correct the gaps. Read `interview/gaps.md`, and if the topic matches an open gap, note the result there. Do not log anything else. A direct question ("what is X?") gets a direct answer.
 
 ## Format ladder
 

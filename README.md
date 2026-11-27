@@ -1,3 +1,11 @@
-# Interview grill workspace
+# Interview mentor
 
-One job: data-role interview readiness by 2026-12-31. Rules: `CLAUDE.md`. State: `interview/`. Commands: `.claude/commands/`. Earlier plan (archived, history only): `archive/2026-11-27-rds-ae-plan/`.
+One job: data-role interview readiness (35k AED+, UAE / EMEA / US remote). Rules: `CLAUDE.md`.
+
+Four commands, each in a **new chat**:
+- `/basic-screen`: bring your resume; recruiter + hiring-manager screen.
+- `/assign-tasks`: a problem set; come back with solutions; grilled; gaps closed; chat closed when ready.
+- `/project-grill`: a project brief (no code or data); design, architecture and tool-syntax grill.
+- `/explain <topic>`: learn a topic.
+
+State: `interview/`. History: `archive/`.

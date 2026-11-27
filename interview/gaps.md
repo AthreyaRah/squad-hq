@@ -1,6 +1,7 @@
-# Gap register
+# Gaps
 
-Every gap is logged. Resources are assigned only when the gap is linked to a JD at ≥70% with no MUST at 0 (CLAUDE.md 5.1). Max 2 ASSIGNED at once; each ≤3 h. Status: OPEN / ASSIGNED / WORKING / DEEP (closed) / KNOWN WEAKNESS.
+Found in any command. /assign-tasks assigns one resource (exact module, ≤3 h), at most 2 open at a time, and re-tests it.
+Status: OPEN / ASSIGNED / CLOSED / KNOWN WEAKNESS. Re-test: a explain · b apply · c break · d compare (0-2 each).
 
-| ID | Topic | Evidence | Severity | Roles | Linked JD | Status | Resource (exact module) | Loop | Last recheck (a/b/c/d → depth) | Next probe |
-|---|---|---|---|---|---|---|---|---|---|---|
+| ID | Date | Topic | Found in | Evidence | Severity | Status | Resource (exact module) | Re-test (a/b/c/d) | Loop |
+|---|---|---|---|---|---|---|---|---|---|
