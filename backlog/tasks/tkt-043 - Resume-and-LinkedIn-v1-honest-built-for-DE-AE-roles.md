@@ -5,7 +5,7 @@ status: Backlog
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:02:00Z'
-updated_date: '2026-11-27T05:39:00Z'
+updated_date: '2026-11-27T06:02:00Z'
 labels:
   - job-search
   - cat:JOB-RES
@@ -50,6 +50,14 @@ created: 2026-11-27T05:39:00Z
 ---
 
 Re-planned 2026-11-27 (PLAN_AE_2026-11.md, AE/BI Engineer track). Due week of Dec 7: honest years, BI work + AE1 in progress. Titles: AE / BI Engineer; safety-net version for Senior Data/BI Analyst.
+
+---
+
+created: 2026-11-27T06:02:00Z
+
+---
+
+Experience (Rahul, 2026-11-27): CAE application engineer 1.4 y; valves application engineer 1 y; Business Analyst 2 y (BI + AE tasks, Power BI); Product Analyst 0.5 y; Business Analyst 2 y (boomerang, same company as #3); CX BI Data Analyst 1.2 y (current). Total 8.1 y; data/BI 5.7 y. CV line: "8 years of experience, 5+ in analytics and BI". Keep the real titles; describe AE work as tasks.
 
 ---
 <!-- COMMENTS:END -->
