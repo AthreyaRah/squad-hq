@@ -5,12 +5,14 @@ status: Backlog
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:02:00Z'
+updated_date: '2026-11-27T05:39:00Z'
 labels:
   - slice-1
   - v1
   - aws
   - cloud
   - cat:S1-09
+  - later
 dependencies:
   - TKT-034
 priority: p3
@@ -44,3 +46,15 @@ Free-tier S3 bucket + an IAM role/user that can only write to one prefix. Land b
 - [ ] #4 Explain-back and understanding check passed
 - [ ] #5 Findings added to REPS.md; PROGRESS.md updated
 <!-- DOD:END -->
+
+## Comments
+
+<!-- COMMENTS:BEGIN -->
+created: 2026-11-27T05:39:00Z
+
+---
+
+Re-planned 2026-11-27 (PLAN_AE_2026-11.md, AE/BI Engineer track). AWS moves to LATER: Azure first for UAE banks/government.
+
+---
+<!-- COMMENTS:END -->

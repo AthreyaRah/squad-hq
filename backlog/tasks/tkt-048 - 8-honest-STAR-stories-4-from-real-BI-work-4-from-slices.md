@@ -5,12 +5,13 @@ status: Backlog
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:25:00Z'
+updated_date: '2026-11-27T05:39:00Z'
 labels:
   - job-search
   - cat:JOB-STAR
 milestone: m-2
 dependencies: []
-priority: p2
+priority: p1
 type: docs
 project: JOB
 ordinal: 25000
@@ -38,3 +39,15 @@ Write 8 stories in PORTFOLIO.md, 5 lines each, with a number in the Result. 4 fr
 - [ ] #4 Explain-back and understanding check passed
 - [ ] #5 Findings added to REPS.md; PROGRESS.md updated
 <!-- DOD:END -->
+
+## Comments
+
+<!-- COMMENTS:BEGIN -->
+created: 2026-11-27T05:39:00Z
+
+---
+
+Re-planned 2026-11-27 (PLAN_AE_2026-11.md, AE/BI Engineer track). 4 real BI stories first (week of Nov 30).
+
+---
+<!-- COMMENTS:END -->

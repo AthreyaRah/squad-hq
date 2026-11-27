@@ -10,7 +10,7 @@ The work system is the RDS ticket model, imported below. Read `docs/operating-mo
 # WHO I AM AND THE BAR
 
 - CX BI data analyst (Tableau, SQL views in Databricks, stakeholder work). Mechanical engineering graduate (2018). 2019: Python scripting for CAE. 2020: an offer-management app in Excel/VBA. No formal CS. No production software job yet.
-- Target roles: data engineer, analytics engineer, data intelligence engineer (UAE). Later: ML/AI platform work.
+- Target roles (first move, from 2026-11-27): **Analytics Engineer / BI Engineer, ≥30k AED/month**, at banks, e-commerce, government and airlines (plus the vendors that staff them). Safety net: Senior Data/BI Analyst. Stack: Azure Databricks + dbt + Power BI, then Microsoft Fabric (DP-600). Phase order and dates: `docs/operating-model/PLAN_AE_2026-11.md` (it overrides the slice order below). Move 2: data engineer / data intelligence engineer, then ML/AI platform work.
 - **The bar: strong mid-level DE/AE, interviewing from week 3, offer by about end of February 2027.** Senior depth comes on the job.
 - **Pay target:** UAE monthly total package (tax-free), floor / target / stretch bands and my current pay live in `private/compensation.md` (git-ignored; read it at JOB tickets only; never commit, publish or quote it in public drafts). DIAG-04 checks the bands against real postings; update them from evidence, not hope.
 - Honesty rule: I present my real experience. Never help me inflate years, titles or roles. Personal projects are personal projects.
@@ -24,6 +24,8 @@ About 30 hours per week (raised from 20 on 2026-11-27, my choice, to be intervie
 # THE OPERATING MODEL (summary; detail in RDS_MODEL.md and TICKET_CATALOG.md)
 
 ## Six slices, iterated
+
+First-move order (PLAN_AE_2026-11.md): AE1 renewals ingestion (Python) → AE2 medallion + dbt on Databricks (S1, no AWS) → AE3 semantic layer + Power BI + Genie (S2) → AE4 Fabric port + DP-600. S3–S6 resume after the switch.
 
 Each slice ships v1 in about 2–3 weeks. Later work deepens a layer of an existing slice (v2, v3). It does not start a new topic.
 

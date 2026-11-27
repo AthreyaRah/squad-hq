@@ -5,13 +5,14 @@ status: Backlog
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:02:00Z'
+updated_date: '2026-11-27T05:39:00Z'
 labels:
   - job-search
   - cat:JOB-RES
 milestone: m-2
 dependencies:
   - TKT-030
-priority: p2
+priority: p1
 type: docs
 project: JOB
 ordinal: 20000
@@ -40,3 +41,15 @@ Rewrite resume + LinkedIn headline/about for DE/AE roles, using the DIAG-04 skil
 - [ ] #4 Explain-back and understanding check passed
 - [ ] #5 Findings added to REPS.md; PROGRESS.md updated
 <!-- DOD:END -->
+
+## Comments
+
+<!-- COMMENTS:BEGIN -->
+created: 2026-11-27T05:39:00Z
+
+---
+
+Re-planned 2026-11-27 (PLAN_AE_2026-11.md, AE/BI Engineer track). Due week of Dec 7: honest years, BI work + AE1 in progress. Titles: AE / BI Engineer; safety-net version for Senior Data/BI Analyst.
+
+---
+<!-- COMMENTS:END -->

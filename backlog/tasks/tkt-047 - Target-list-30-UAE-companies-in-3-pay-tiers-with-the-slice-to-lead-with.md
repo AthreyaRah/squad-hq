@@ -5,13 +5,14 @@ status: Backlog
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:25:00Z'
+updated_date: '2026-11-27T05:39:00Z'
 labels:
   - job-search
   - cat:JOB-TARGETS
 milestone: m-2
 dependencies:
   - TKT-030
-priority: p2
+priority: p1
 type: docs
 project: JOB
 ordinal: 24000
@@ -39,3 +40,15 @@ Build `docs/market/targets.md`: company, tier (pay band from DIAG-04 data), team
 - [ ] #4 Explain-back and understanding check passed
 - [ ] #5 Findings added to REPS.md; PROGRESS.md updated
 <!-- DOD:END -->
+
+## Comments
+
+<!-- COMMENTS:BEGIN -->
+created: 2026-11-27T05:39:00Z
+
+---
+
+Re-planned 2026-11-27 (PLAN_AE_2026-11.md, AE/BI Engineer track). Tiers by sector from PLAN section 2: banks, e-commerce, government, airlines, vendors. 30 names, lead project per tier.
+
+---
+<!-- COMMENTS:END -->

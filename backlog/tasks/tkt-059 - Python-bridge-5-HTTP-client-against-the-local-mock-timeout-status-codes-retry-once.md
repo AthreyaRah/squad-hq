@@ -7,7 +7,7 @@ status: Backlog
 assignee:
   - '@rahul'
 created_date: '2026-11-26T17:30:00Z'
-updated_date: '2026-11-26T17:30:00Z'
+updated_date: '2026-11-27T05:39:00Z'
 labels:
   - slice-1
   - v1
@@ -17,7 +17,7 @@ labels:
 milestone: m-2
 dependencies:
   - TKT-056
-priority: p2
+priority: p3
 type: feature
 project: S1
 ordinal: 36000
@@ -55,6 +55,14 @@ created: 2026-11-26T17:30:00Z
 ---
 
 Depends on bridge 2 (pytest).
+
+---
+
+created: 2026-11-27T05:39:00Z
+
+---
+
+Re-planned 2026-11-27 (PLAN_AE_2026-11.md, AE/BI Engineer track). HTTP client moves after AE2; AE postings weight files + dbt over APIs.
 
 ---
 <!-- COMMENTS:END -->

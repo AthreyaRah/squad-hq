@@ -7,15 +7,17 @@ status: Backlog
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:25:00Z'
+updated_date: '2026-11-27T05:39:00Z'
 labels:
   - slice-1
   - v1
   - spark
   - planted-bug
   - cat:S1-10
+  - later
 dependencies:
   - TKT-035
-priority: p2
+priority: p3
 type: feature
 project: S1
 ordinal: 22000
@@ -50,3 +52,15 @@ Watermark on `updated_at` vs on ingest time. **Decision:** `updated_at` with a l
 - [ ] #4 Explain-back and understanding check passed
 - [ ] #5 Findings added to REPS.md; PROGRESS.md updated
 <!-- DOD:END -->
+
+## Comments
+
+<!-- COMMENTS:BEGIN -->
+created: 2026-11-27T05:39:00Z
+
+---
+
+Re-planned 2026-11-27 (PLAN_AE_2026-11.md, AE/BI Engineer track). MERGE/backfill after the first interviews (AE2 v2).
+
+---
+<!-- COMMENTS:END -->

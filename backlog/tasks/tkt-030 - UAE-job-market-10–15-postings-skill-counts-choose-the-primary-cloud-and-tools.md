@@ -7,13 +7,13 @@ status: Ready
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:02:00Z'
-updated_date: '2026-11-27T04:37:00Z'
+updated_date: '2026-11-27T05:39:00Z'
 labels:
   - job-search
   - cat:DIAG-04
 milestone: m-2
 dependencies: []
-priority: p2
+priority: p1
 type: spike
 project: DIAG
 ordinal: 7000
@@ -82,6 +82,22 @@ created: 2026-11-27T04:37:00Z
 ---
 
 Kept: this is market research, not a skill test. Moved to P2; runs in week 2-3 alongside the job loop.
+
+---
+
+created: 2026-11-27T05:30:00Z
+
+---
+
+Re-scoped 2026-11-27 (Rahul's goal: analytics role, 30-35k AED/month, fastest). Titles now: Senior Data Analyst, BI Engineer/Developer, Analytics Engineer (DE only as a comparison, 3 postings max). Filter: salary shown or a known high-pay employer (bank, big tech, govt-linked, top consultancy). Add fields: years asked, dbt y/n, Databricks y/n, Power BI vs Tableau, Python required y/n, Genie/AI-BI or LLM mention y/n. Secondary evidence already in docs/market/uae-2026-11-secondary.md. Moved to P1: it decides the target title and the plan order.
+
+---
+
+created: 2026-11-27T05:39:00Z
+
+---
+
+Re-planned 2026-11-27 (PLAN_AE_2026-11.md, AE/BI Engineer track). Now also count: Azure Databricks vs Fabric vs Snowflake, Power BI vs Tableau, Arabic preferred y/n, sector (bank / e-com / gov / airline / vendor).
 
 ---
 <!-- COMMENTS:END -->

@@ -7,17 +7,18 @@ status: Backlog
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:02:00Z'
-updated_date: '2026-11-26T17:30:00Z'
+updated_date: '2026-11-27T05:39:00Z'
 labels:
   - slice-1
   - v1
   - http
   - planted-bug
   - cat:S1-08
+  - later
 dependencies:
   - TKT-034
   - TKT-059
-priority: p2
+priority: p3
 type: feature
 project: S1
 ordinal: 17000
@@ -67,6 +68,14 @@ created: 2026-11-26T17:30:00Z
 ---
 
 Now also depends on TKT-059: DIAG-02 showed HTTP calls and timeouts are new.
+
+---
+
+created: 2026-11-27T05:39:00Z
+
+---
+
+Re-planned 2026-11-27 (PLAN_AE_2026-11.md, AE/BI Engineer track). API ingestion after the switch.
 
 ---
 <!-- COMMENTS:END -->

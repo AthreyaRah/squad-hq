@@ -6,13 +6,13 @@ Status: started 2026-10-25 (session 1)
 
 ```
 DATE: 2026-11-27
-SLICE: S1 v1 (Python bridge first) — BEHIND: Python bridge (TKT-055..059, ~8 sessions) adds ~1 week before S1 v1
+SLICE: AE1 renewals ingestion (PLAN_AE_2026-11.md) — ON TRACK (new plan, day 1)
 TICKET: TKT-055 (In Progress) — step 1 read PASS; next: fix path + rename to read_rows, then step 2 clean (parse_hours raises, new dicts)
 SPRINT: S03 2026-11-23 — committed 14 (+5 bridge tickets, re-plan at retro) / done 2
 JOB LOOP (week): applications 0/3 (starts week 3) · post 0/1 · timed set n/a
 REPS: due 0 today (11 due 2026-11-27/28) · streak 1 day
 BUILD RATIO: ~80% · hours this week: ? (budget 30 h from 2026-11-27)
-LATER LIST: Homebrew, Node.js, gh details (when a ticket needs them); Docker install (S1-07); S5 v2 React + TypeScript UI (only if a job needs it)
+LATER LIST: Kantata API → MySQL track (TKT-066, start on Rahul's word); Homebrew, Node.js, gh details (when a ticket needs them); Docker install (S1-07); S5 v2 React + TypeScript UI (only if a job needs it)
 ```
 
 ## BASELINE (old plan, kept for history — the diagnostic replaces it; see DEPTH_GRID.md)
@@ -34,3 +34,4 @@ LATER LIST: Homebrew, Node.js, gh details (when a ticket needs them); Docker ins
 - 2026-11-26: DIAG-02 (TKT-028) Done. Python baseline L1: functions/dicts/try-except/aliasing known; P2, P3 partial (R009-R011). GAPs (classes, files+json, pytest, logging, type hints, HTTP) -> bridge tickets TKT-055..059 wired before TKT-033/034/040. Mentor error: P1 set above stated baseline; familiarity scale clarified (L = written alone once).
 - 2026-11-27: Diagnostics stopped (Rahul's call): clean slate, JIT teach at first use. TKT-029, TKT-031 archived; TKT-030 kept as job-search P2. Started TKT-055.
 - 2026-11-27: Time budget 20 → 30 h/week (Rahul's choice). Targets: first interviews mid–late Jan, offer late Feb–Mar; Ramadan ~Feb 8 slows decisions. S1 trim + AE-first applications to decide at S03 retro (Dec 6).
+- 2026-11-27: Re-plan to AE/BI Engineer track (PLAN_AE_2026-11.md): Azure Databricks + dbt + Power BI, then Fabric + DP-600; targets banks, e-com, government, airlines, vendors. Phases AE1 renewals (to Dec 13), AE2 dbt medallion (to Jan 3), AE3 Power BI + Genie (to Jan 24), AE4 Fabric + DP-600 (to Feb 14). New tickets TKT-060..065; AWS, Spark tuning, API, dataclass moved to P3/LATER; milestone S04 (m-3) created.
