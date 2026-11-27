@@ -5,7 +5,7 @@ status: Ready
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:02:00Z'
-updated_date: '2026-11-25T17:03:00Z'
+updated_date: '2026-11-27T04:37:00Z'
 labels:
   - diagnostic
   - git
@@ -62,6 +62,14 @@ created: 2026-11-25T17:03:00Z
 ---
 
 Ready: full body, time box set, no prerequisites (diagnostic). Attempt first via /diag.
+
+---
+
+created: 2026-11-27T04:37:00Z
+
+---
+
+Cancelled 2026-11-27 (Rahul's call): no more skill test-outs. Clean-slate JIT: Git/PR flow is taught at first use in TKT-033.
 
 ---
 <!-- COMMENTS:END -->

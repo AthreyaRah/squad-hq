@@ -5,13 +5,13 @@ Status: started 2026-10-25 (session 1)
 ## CURRENT
 
 ```
-DATE: 2026-11-26
-SLICE: diagnostic week (S1 v1 starts after DIAG) — BEHIND: Python bridge (TKT-055..059, ~8 sessions) adds ~1 week before S1 v1
-TICKET: TKT-028 (Done) — next: /diag → TKT-029 (DIAG-03 Git and PR test-out)
+DATE: 2026-11-27
+SLICE: S1 v1 (Python bridge first) — BEHIND: Python bridge (TKT-055..059, ~8 sessions) adds ~1 week before S1 v1
+TICKET: TKT-055 (In Progress) — step 1 read PASS; next: fix path + rename to read_rows, then step 2 clean (parse_hours raises, new dicts)
 SPRINT: S03 2026-11-23 — committed 14 (+5 bridge tickets, re-plan at retro) / done 2
 JOB LOOP (week): applications 0/3 (starts week 3) · post 0/1 · timed set n/a
 REPS: due 0 today (11 due 2026-11-27/28) · streak 1 day
-BUILD RATIO: ~80% (probes) · hours this week: ?
+BUILD RATIO: ~80% · hours this week: ? (budget 30 h from 2026-11-27)
 LATER LIST: Homebrew, Node.js, gh details (when a ticket needs them); Docker install (S1-07); S5 v2 React + TypeScript UI (only if a job needs it)
 ```
 
@@ -32,3 +32,5 @@ LATER LIST: Homebrew, Node.js, gh details (when a ticket needs them); Docker ins
 - 2026-11-25: Interview-coverage pass (2 passes). Added S1-10 MERGE/backfill, S1-11 Spark perf, S2-02b SCD2, S2-02c finance SQL, S2-09 stats, JOB-TARGETS/STAR/LOG/OUT/SD/DSA/NEG, mock #1. Pay bands set (private/compensation.md). Self-serve 2x rule (≤30 min/ticket after attempt).
 - 2026-11-26: DIAG-01 (TKT-027) Done. SQL baseline L2: fan-out, windows, dedup pass; anti-join partial (looked up), plan reading partial. Gaps: ROWS vs RANGE, EXPLAIN → R004-R008, TKT-046. Mock dataset tools/mocks/diag/.
 - 2026-11-26: DIAG-02 (TKT-028) Done. Python baseline L1: functions/dicts/try-except/aliasing known; P2, P3 partial (R009-R011). GAPs (classes, files+json, pytest, logging, type hints, HTTP) -> bridge tickets TKT-055..059 wired before TKT-033/034/040. Mentor error: P1 set above stated baseline; familiarity scale clarified (L = written alone once).
+- 2026-11-27: Diagnostics stopped (Rahul's call): clean slate, JIT teach at first use. TKT-029, TKT-031 archived; TKT-030 kept as job-search P2. Started TKT-055.
+- 2026-11-27: Time budget 20 → 30 h/week (Rahul's choice). Targets: first interviews mid–late Jan, offer late Feb–Mar; Ramadan ~Feb 8 slows decisions. S1 trim + AE-first applications to decide at S03 retro (Dec 6).

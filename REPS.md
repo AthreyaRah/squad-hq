@@ -19,6 +19,9 @@ Drill types: SQL (write a query), CODE (a function from a blank file), EXPLAIN (
 | R009 | Group-and-sum where every key must appear: total billable hours per consultant from a list of dicts, including a consultant with 0 billable hours. From a blank file, two ways (`dict.get` and an `if key not in` check first) | CODE | TKT-028 P2 | 2026-11-26 | 2026-11-28 | +2d | 0 |
 | R010 | `raise` vs `return` an exception: write `parse_hours(value)` that raises ValueError naming the bad value, then call it inside try/except from another function. Say what the caller gets if you `return ValueError(...)` instead | CODE | TKT-028 P3 | 2026-11-26 | 2026-11-28 | +2d | 0 |
 | R011 | Clean rows without changing the caller's data: build new dicts instead of editing `row[...]` in place. Show the original list before and after, and say why in-place edits bite in a pipeline | CODE | TKT-028 P3 | 2026-11-26 | 2026-11-28 | +2d | 0 |
+| R012 | Why a hardcoded absolute path (`/Users/<you>/...`) breaks a script on another machine, in CI and in a public repo; rewrite it relative, and say which folder a relative path is resolved from | EXPLAIN | TKT-055 step 1 | 2026-11-27 | 2026-11-29 | +2d | 0 |
+| R013 | Paths drill in the terminal: from 3 different folders, predict then check where `data/time_entries.csv`, `./data/...`, `../python/data/...` and `~/Documents/...` point (`pwd`, `ls`). Then run convert.py from the parent folder, explain the FileNotFoundError, and fix the command (not the code) | CMD | TKT-055 step 1 (Rahul asked) | 2026-11-27 | 2026-11-29 | +2d | 0 |
+| R014 | Absolute vs relative path from a blank page: define both, give one example each on your Mac, and say which one belongs in code you will push to a public repo and why | EXPLAIN | TKT-055 step 1 (Rahul asked) | 2026-11-27 | 2026-12-04 | +1w | 0 |
 
 ## Retired
 

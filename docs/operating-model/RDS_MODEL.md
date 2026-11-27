@@ -186,12 +186,12 @@ Create, edit, comment on and move tickets (Done only per section 3). Write teamm
 
 ## 15. Sprint cadence
 
-- 2-week sprints. Planning on day 1: the mentor proposes tickets that fit about 40 hours (20 h/week), and I commit to a subset.
+- 2-week sprints. Planning on day 1: the mentor proposes tickets that fit about 60 hours (30 h/week), and I commit to a subset.
 - Each sprint holds: slice work (about 70%), 1 teammate review, the job loop (from week 3: 6 applications, 2 posts, 2 timed sets per sprint), REPS daily, at most 1 field report, and incident/fleet work once a fleet exists.
 - One mock interview per month (Khalid).
 - Weekly mini-retro (15 minutes, end of each week): 5 retrieval questions on things from 1–3 weeks ago (no notes), METRICS.md update, behind or not, one change.
 - Sprint retro (end of sprint): metrics, one thing to change, next sprint plan, depth-grid re-grade if a month has passed.
-- Weekly shape (about 20 h): Mon, Wed, Thu ~2.5 h build · Tue light (one rep) · Fri, Sat ~5 h build + job loop · Sun ~2.5 h review, retro and publish.
+- Weekly shape (about 30 h): Mon, Wed, Thu, Fri 3.5 h build · Tue 1 h light (one rep + timed SQL) · Sat 8 h build + job loop · Sun 7 h build, review, retro and publish.
 
 ## 16. Diagnostic (replaces "first run")
 

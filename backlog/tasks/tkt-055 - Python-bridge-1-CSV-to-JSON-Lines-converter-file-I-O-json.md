@@ -1,10 +1,11 @@
 ---
 id: TKT-055
 title: 'Python bridge 1: CSV to JSON Lines converter (file I/O + json)'
-status: Backlog
+status: In Progress
 assignee:
   - '@rahul'
 created_date: '2026-11-26T17:30:00Z'
+updated_date: '2026-11-27T05:00:00Z'
 labels:
   - slice-1
   - v1
@@ -43,3 +44,31 @@ ordinal: 32000
 - [ ] #4 Explain-back and understanding check passed
 - [ ] #5 Findings added to REPS.md; PROGRESS.md updated
 <!-- DOD:END -->
+
+## Comments
+
+<!-- COMMENTS:BEGIN -->
+created: 2026-11-27T04:37:00Z
+
+---
+
+Ready: first JIT ticket on the clean-slate plan. Time box 2 sessions. Concepts taught at first use, then attempt.
+
+---
+
+created: 2026-11-27T04:55:00Z
+
+---
+
+In Progress 2026-11-27. Step 1 (read) PASS: 9 rows read with with/open + DictReader, runs. Fixes before step 2: (1) hardcoded absolute path with home folder -> relative path (R012); (2) rename convert() to read_rows() (convert is the whole pipeline later). Report missing WHAT I GOT / EXPECTED / GAP fields. Next: step 2 clean (parse_hours raises, new dicts). Rahul moving to a new chat.
+
+---
+
+created: 2026-11-27T05:00:00Z
+
+---
+
+Step 1 fixes verified: relative path, read_rows. Paths reps R012-R014 queued at Rahul's request.
+
+---
+<!-- COMMENTS:END -->

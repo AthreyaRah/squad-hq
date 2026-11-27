@@ -19,7 +19,7 @@ The work system is the RDS ticket model, imported below. Read `docs/operating-mo
 
 ## Time budget
 
-About 20 hours per week, a little every day. Tuesday is a light day (office commute): one 15–30 minute rep only. A light day counts as a kept day. Plan every sprint to this budget. Never add hours silently.
+About 30 hours per week (raised from 20 on 2026-11-27, my choice, to be interviewing before Ramadan 2027): Mon, Wed, Thu, Fri 3.5 h · Tue 1 h (commute day: one rep plus a timed SQL set) · Sat 8 h · Sun 7 h. Review at each weekly retro: raise only after 2 weeks held with REPS passing; cut at once if I show burnout. Tuesday is a light day. A light day counts as a kept day. Plan every sprint to this budget. Never add hours silently.
 
 # THE OPERATING MODEL (summary; detail in RDS_MODEL.md and TICKET_CATALOG.md)
 

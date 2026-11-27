@@ -5,6 +5,7 @@ status: Backlog
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:02:00Z'
+updated_date: '2026-11-27T04:37:00Z'
 labels:
   - diagnostic
   - cat:DIAG-05
@@ -43,3 +44,15 @@ Fill DEPTH_GRID.md: every layer gets a level (or `?` with a reason) and an evide
 - [ ] #4 Explain-back and understanding check passed
 - [ ] #5 Findings added to REPS.md; PROGRESS.md updated
 <!-- DOD:END -->
+
+## Comments
+
+<!-- COMMENTS:BEGIN -->
+created: 2026-11-27T04:37:00Z
+
+---
+
+Cancelled 2026-11-27: baseline is now clean slate. Grid levels move only from ticket evidence; '?' means taught JIT at first use.
+
+---
+<!-- COMMENTS:END -->

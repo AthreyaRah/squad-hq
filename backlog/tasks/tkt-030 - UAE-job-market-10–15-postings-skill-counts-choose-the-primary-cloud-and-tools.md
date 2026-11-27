@@ -7,14 +7,13 @@ status: Ready
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:02:00Z'
-updated_date: '2026-11-25T17:25:00Z'
+updated_date: '2026-11-27T04:37:00Z'
 labels:
-  - diagnostic
   - job-search
   - cat:DIAG-04
 milestone: m-2
 dependencies: []
-priority: p1
+priority: p2
 type: spike
 project: DIAG
 ordinal: 7000
@@ -75,6 +74,14 @@ created: 2026-11-25T17:25:00Z
 ---
 
 Interview-coverage pass (2026-11-25): added AC so this ticket covers an interview-critical concept.
+
+---
+
+created: 2026-11-27T04:37:00Z
+
+---
+
+Kept: this is market research, not a skill test. Moved to P2; runs in week 2-3 alongside the job loop.
 
 ---
 <!-- COMMENTS:END -->

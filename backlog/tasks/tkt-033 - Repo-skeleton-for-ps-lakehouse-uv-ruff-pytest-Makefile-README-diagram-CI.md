@@ -5,7 +5,7 @@ status: Backlog
 assignee:
   - '@rahul'
 created_date: '2026-11-25T17:02:00Z'
-updated_date: '2026-11-26T17:30:00Z'
+updated_date: '2026-11-27T04:37:00Z'
 labels:
   - slice-1
   - v1
@@ -14,7 +14,6 @@ labels:
   - cat:S1-01
 milestone: m-2
 dependencies:
-  - TKT-029
   - TKT-056
 priority: p1
 type: chore
@@ -73,6 +72,14 @@ created: 2026-11-26T17:30:00Z
 ---
 
 Now also depends on TKT-056: DIAG-02 showed pytest is new; learn it on a small converter before the skeleton.
+
+---
+
+created: 2026-11-27T04:37:00Z
+
+---
+
+Dropped dependency on TKT-029 (archived). Git and PR flow taught JIT here.
 
 ---
 <!-- COMMENTS:END -->
