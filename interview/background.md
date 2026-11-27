@@ -28,7 +28,7 @@ Status: none yet. He is building it from scratch (2026-11-27). `/basic-screen` g
 
 ## Ping projects (his brief, 2026-11-27)
 
-2026-11-27: he will rebuild everything AI did (P3, P5) himself before defending it. Until a `/project-grill` passes on the rebuilt version, the claim limits below stand.
+2026-11-27: he will rebuild everything AI did (P3, P5) himself before defending it. The same goes for past work (table below): every piece will be rebuilt on a public dataset, then defended. Until a `/project-grill` passes on the rebuilt version, the claim limits below stand.
 
 Claim limits are the mentor's first read, before any grill. `/project-grill` replaces each one with a tested "defensible claim".
 
@@ -40,3 +40,16 @@ Claim limits are the mentor's first read, before any grill. `/project-grill` rep
 | P4 | Regional scorecard dashboard for PSO, with drill-downs (Tableau) | done | his | Fair to claim. | — | — |
 | P5 | Genie spaces for the PSO VP | Genie spaces done (by AI) | AI built them | Claim "set up Genie spaces for a VP using AI tooling" only if he can explain how they work. The rebuild on MySQL/AWS, the local LLMs, the ontology and the knowledge graph are **plans**: never claim them as done. | — | — |
 | P6 | Process → tool → data mapping for PSO: bottlenecks, integration and workflow changes | done | his | Fair to claim as analysis and recommendations. Say what was adopted, as ranges or outcomes. | — | — |
+
+## Past work to rebuild on public data (2026-11-27)
+
+Two claims, kept apart:
+- **Resume (past job):** say exactly what he did then. "Maintained" stays "maintained".
+- **Personal project (the rebuild):** "I rebuilt X from scratch on a public dataset". He may claim every part of it he can defend in `/project-grill`.
+
+| # | Past work | What he did then | Rebuild (public dataset) | Status | Defensible claim (after grill) | Last grilled |
+|---|---|---|---|---|---|---|
+| H1 | Power BI dashboards (Business Analyst roles) | maintained reports others built | build the model (star schema, DAX measures) and the report from scratch | not started | — | — |
+| H2 | Power Automate workflows (Business Analyst roles) | maintained | rebuild one workflow end to end | not started | — | — |
+| H3 | Google AppSheet app for quote and PS ops (Broadcom) | built it over a weekend | rebuild on public or synthetic quote data | not started | — | — |
+| H4 | Ping P1-P6 | see the table above | rebuild the AI-built parts (P3, P5) on public data | not started | — | — |
