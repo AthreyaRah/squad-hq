@@ -6,3 +6,8 @@ Last computed: never (no graded sessions yet).
 
 | Role | Verdict | Must-haves below 3.0 | Coding bars met | Sessions / round types (21 d) | Top blockers |
 |---|---|---|---|---|---|
+
+## JD readiness
+
+| JD file | Date | Readiness % | MUST at 0 | Gate | Next step |
+|---|---|---|---|---|---|

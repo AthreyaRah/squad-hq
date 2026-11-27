@@ -10,5 +10,6 @@ description: Compute the per-role verdict from logged evidence only.
    Use Python for the arithmetic when the tables are long.
 3. Verdict per role: READY / READY FOR SCREENS / NOT YET, exactly by the rules. READY → "Apply now. More prep has diminishing returns. Keep the daily drill only." READY FOR SCREENS → name the later round at risk. NOT YET → top 3 blockers and the exact evidence that would flip each.
 4. Ignore how he says he feels. If he argues a score, ask for a new graded session, not a re-grade.
-5. Write the result to `interview/readiness.md` (dated table per role + blockers). Days left to 2026-12-31; final verdict due by 2026-12-29.
-6. End with ONE next action.
+5. JD table: for each file in `interview/jds/`, show the latest %, any MUST at 0, the gate decision and the date. Recompute a JD only if new evidence exists since its last run; otherwise show it as is.
+6. Write the result to `interview/readiness.md` (dated table per role + JD table + blockers). Days left to 2026-12-31; final verdict due by 2026-12-29.
+7. End with ONE next action.

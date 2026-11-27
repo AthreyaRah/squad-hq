@@ -13,5 +13,7 @@ Arguments: $ARGUMENTS. Default round: the one with the least evidence for that r
    - Verdict for this round: would pass / borderline / would not pass, one line why.
    - Top 3 fixes, each with a better answer shape (not a full script he memorizes).
    - Honesty check: any claim that would not survive a follow-up.
-5. Log it in `interview/log.md` (date, role, round, market, minutes, scores with evidence, verdict, fixes). New gaps → `interview/gaps.md`. Then update `interview/readiness.md` per section 5.
+5. Log it in `interview/log.md` (date, role, round, market, minutes, scores with evidence, verdict, fixes). New gaps → `interview/gaps.md` as OPEN (resources only via the JD gate). Then update `interview/readiness.md` per section 5.
+
+Project questions in any round use only claims in `interview/worklog.md` and `interview/projects.md`, inside their claim boundary.
 6. End with ONE next action.

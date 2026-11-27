@@ -21,10 +21,9 @@ Status: NOT FILLED (first session runs the intake in CLAUDE.md section 11).
 Breakdown on file (2026-11-27): CAE application engineer 1.4 y · valves application engineer 1 y · Business Analyst 2 y (Power BI, mostly maintaining reports) · Product Analyst 0.5 y · Business Analyst 2 y (boomerang) · CX BI Data Analyst 1.2 y (current). About 8 y total, 5+ in analytics/BI.
 Setup prompt said "about 7 y presales + about 1 y CX BI". Resolve which is true and delete the other.
 
-## Ping projects (anonymized: what, his part, tools, outcome; no real values)
+## Ping projects
 
-| # | Project | His part | Tools | Outcome | Defensible claim |
-|---|---|---|---|---|---|
+Tracked in `interview/worklog.md` (one entry per project, with its claim boundary).
 
 ## Claims that need care
 
