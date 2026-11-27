@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - '@rahul'
 created_date: '2026-11-26T17:30:00Z'
-updated_date: '2026-11-27T05:00:00Z'
+updated_date: '2026-11-27T06:19:00Z'
 labels:
   - slice-1
   - v1
@@ -69,6 +69,15 @@ created: 2026-11-27T05:00:00Z
 ---
 
 Step 1 fixes verified: relative path, read_rows. Paths reps R012-R014 queued at Rahul's request.
+
+---
+
+author: @mentor
+created: 2026-11-27T06:19:00Z
+
+---
+
+Session 2 (2026-11-27): resumed. Step 2 brief given: parse_hours raises, clean() returns (new rows, bad count). Time box: this is the last session; steps 2-4 must land or ship what exists.
 
 ---
 <!-- COMMENTS:END -->
